@@ -1,0 +1,3 @@
+#!/bin/bash
+#XCL_EMULATION_MODE=$(TARGET) ./$(EXECUTABLE) ./rand128.fasta $(BUILD_DIR)/$(DEVICE_SRC).xclbin
+XCL_EMULATION_MODE=$1 $2 $3 $4

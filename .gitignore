@@ -1,0 +1,12 @@
+
+*.out
+*.2b
+device/*_build/*
+device/*_temp_dir/*
+device/logs/*
+*.log
+*.fasta
+.run/*
+*.xml
+*.mk
+.Xil/*
