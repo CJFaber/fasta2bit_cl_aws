@@ -26,9 +26,9 @@ __attribute__((xcl_dataflow))
 __attribute__((reqd_work_group_size(1,1,1)))
 void FastaTo2Bit_loop(global const uint16* inp_dna, global uchar16* outp_dna, const unsigned int size)
 {
-	__attribute__((xcl_dataflow))
-	//__attribute__((xcl_pipeline_loop(1)))
-	//__attribute__((opencl_unroll_hint(n)))
+	//__attribute__((xcl_dataflow))
+	__attribute__((xcl_pipeline_loop(1)))
+	__attribute__((opencl_unroll_hint))
 	LOOP_1: for(unsigned int i = 0; i < size;  i++)
 	{
 		
@@ -145,6 +145,5 @@ void FastaTo2Bit_loop(global const uint16* inp_dna, global uchar16* outp_dna, co
 
 }
 
-void convert(uint16 inp, char16 outp){
 	
 

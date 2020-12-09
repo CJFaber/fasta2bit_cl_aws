@@ -20,9 +20,10 @@
 
 
 
-const std::string kernel_name = "FastaTo2Bit_dataflow";
 //FastaTo2Bit_loop
+//const std::string kernel_name = "FastaTo2Bit_loop";
 //FastaTo2Bit_dataflow
+const std::string kernel_name = "FastaTo2Bit_dataflow";
 
 using std::vector;
 using std::deque;
@@ -214,7 +215,8 @@ int main(int argc, char* argv[]) {
 	}
 	else {
 		std::cout << "Device programmed successfully\n";
-		OCL_CHECK(err, fasta_transform_kernel = cl::Kernel(program, "FastaTo2Bit_dataflow", &err));
+		//OCL_CHECK(err, fasta_transform_kernel = cl::Kernel(program, "FastaTo2Bit_dataflow", &err));
+		OCL_CHECK(err, fasta_transform_kernel = cl::Kernel(program, (const char*)kernel_name.c_str(), &err));
 		//valid_device = true;
 	}
 

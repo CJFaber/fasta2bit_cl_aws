@@ -38,8 +38,10 @@ HOST_SRCS += $(foreach D,$(SRC_DIR),$(wildcard $D/*.c))
 HOST_SRCS += $(foreach D,$(SRC_DIR),$(wildcard $D/*.cpp))
 
 EXECUTABLE := FastaTo2Bit.out
-DEVICE_SRC = FastaTo2Bit-dataflow
 DEV_COMP_TRGT := cl 				#HLS target: cl / cpp / etc
+#DEVICE_SRC = FastaTo2Bit-loop
+DEVICE_SRC = FastaTo2Bit-dataflow
+#KERNEL_NAME := FastaTo2Bit_loop
 KERNEL_NAME := FastaTo2Bit_dataflow
 ###########################################
 
