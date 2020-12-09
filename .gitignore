@@ -10,3 +10,11 @@ device/logs/*
 *.xml
 *.mk
 .Xil/*
+*.backup.*
+*.swp
+*.run_summary
+.run/*
+*.jou
+*.log
+*.str
+*.csv

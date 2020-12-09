@@ -1,6 +1,6 @@
 #define INP_STREAM_WIDTH	64		//Number of Chars in width of input stream (512 bits / 8 bits in a char)
 #define OUT_STREAM_WIDTH	16		//Number of Chars in width of output stream (64 values * 2bits per value) / 8 bits in a char 
-#define FILE_SPLIT			1048576	//Split files on 32MiB
+#define FILE_SPLIT			1048576	//Split files on 4MiB (4MiB / 4 for number of ints)
 
 
 //Vitis CL includes
@@ -20,8 +20,9 @@
 
 
 
-const std::string kernel_name = "FastaTo2Bit_loop";
+const std::string kernel_name = "FastaTo2Bit_dataflow";
 //FastaTo2Bit_loop
+//FastaTo2Bit_dataflow
 
 using std::vector;
 using std::deque;
@@ -38,7 +39,7 @@ int main(int argc, char* argv[]) {
   	////////////////////////////////////////////////////////
   	//Open DataFile and create buffers	
 	std::string binaryFile = argv[2];
-
+	/*
 	std::ifstream f;
 	f.open(argv[1], std::ios_base::in | std::ios_base::binary);
 
@@ -99,6 +100,71 @@ int main(int argc, char* argv[]) {
 			std::cout << "\nNumRead is: " << NumRead <<std::endl;
 		#endif
 	}
+	*/
+
+		
+	FILE* f = fopen(argv[1], "r");
+
+	if (f==NULL) {
+		std::cout << "File error\n"; 
+		exit (1);
+	}
+	//Find size of file
+	fseek (f, 0 , SEEK_END);
+  	size_t inp_size = ftello(f); //Number of bases in the file
+  	rewind(f);
+
+	deque<vector<unsigned int, aligned_allocator<unsigned int>>> InpQueue;	//Char input read from file
+	deque<vector<char, aligned_allocator<char>>> OutQueue;					//2-Bit packed out - Each char is 4 bases
+	
+	std::cout << "Gcount returned (total num of DNA bases): "<<inp_size << std::endl;
+	size_t num_int = inp_size / sizeof(unsigned int);	
+	size_t outp_size = inp_size / 4;
+	std::cout << "Total number of integers: "<< num_int << std::endl;
+	std::cout << "Total Number of 2bit compacted chars: " << outp_size << std::endl <<std::endl;
+
+	//InpQueue.emplace_back(FILE_SPLIT, 0);
+	size_t num_read = 0; 
+	std::vector<unsigned int, aligned_allocator<unsigned int>> Hold;
+		
+	while(num_read < num_int)
+	{
+		size_t num_to_read = FILE_SPLIT;
+		if( (num_read + FILE_SPLIT) > num_int ){
+			//adjust size for smaller file input should only happen once
+			num_to_read = num_int - num_read;
+		}
+		Hold.resize(num_to_read, 0);
+		#ifdef DEBUG
+			std::cout << "num_to_read is: " << num_to_read << std::endl;
+		#endif
+		if( (fread(Hold.data(), (sizeof(unsigned int)), num_to_read, f) % 4 )){
+			std::cout << "Fell into not devisiable by four trap\n";
+		}
+		InpQueue.emplace_back(Hold);
+		#ifdef DEBUG
+			std::cout << "Read into queue: " << num_to_read << " :: " << InpQueue.back().size();
+			std::cout << " :: " << Hold.size() << std::endl;
+		
+			for (auto i = InpQueue.back().begin(); i != InpQueue.back().end(); ++i){
+               	std::cout << +(*i) << ", ";
+           	}
+		
+			std::cout << std::endl;	
+		#endif
+		OutQueue.emplace_back(num_to_read, 0);
+		#ifdef DEBUG
+			std::cout << "OutQueue vector added of size: " << OutQueue.back().size() << std::endl;
+			std::cout << "InpQueue vector added of size: " << InpQueue.back().size() << std::endl;
+		#endif
+		num_read += num_to_read;
+	}
+	
+	//#ifdef DEBUG
+		std::cout << "OutQueue size: " << OutQueue.size() << std::endl;
+		std::cout << "InpQueue size: " << InpQueue.size() << std::endl;
+	//#endif
+	
 
 	//Create the DataCrunch Server.	
 	CrunchServer serv;
@@ -108,7 +174,6 @@ int main(int argc, char* argv[]) {
 	cl::Kernel fasta_transform_kernel;
 	cl::Context context;
 	
-	unsigned int outp_size = inp_size / 4;
 
 	/////////////////////////
 	//Aligned Data
@@ -149,7 +214,7 @@ int main(int argc, char* argv[]) {
 	}
 	else {
 		std::cout << "Device programmed successfully\n";
-		OCL_CHECK(err, fasta_transform_kernel = cl::Kernel(program, "FastaTo2Bit_loop", &err));
+		OCL_CHECK(err, fasta_transform_kernel = cl::Kernel(program, "FastaTo2Bit_dataflow", &err));
 		//valid_device = true;
 	}
 
@@ -185,21 +250,21 @@ int main(int argc, char* argv[]) {
 									 //Try timing with copy host ptr
 									 CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
 									 //CL_MEM_COPY_HOST_PTR | CL_MEM_READ_ONLY,
-									 sizeof(char)*InpQueue.front().size(),
+									 sizeof(unsigned int)*InpQueue.front().size(),
 									 InpQueue.front().data(),
 									 &err));	
-
-		OCL_CHECK(err, err = clQueue.enqueueWriteBuffer(
+		#ifdef EXP_ENQUEUE
+			OCL_CHECK(err, err = clQueue.enqueueWriteBuffer(
 							cl_inp,
 							CL_TRUE,
 							0,
-							sizeof(char)*InpQueue.front().size(),
+							sizeof(unsigned int)*InpQueue.front().size(),
 							InpQueue.front().data(),
 							nullptr,
 							&in_mem_transfer_event));
 
-		OCL_CHECK(err, err = fasta_transform_kernel.setArg(0, cl_inp));
-		
+			OCL_CHECK(err, err = fasta_transform_kernel.setArg(0, cl_inp));	
+		#endif
 
 						 
     	//Output Buffer
@@ -213,7 +278,8 @@ int main(int argc, char* argv[]) {
 								  	OutQueue.front().data(),
 								  	&err));
 
-		OCL_CHECK(err, err = clQueue.enqueueWriteBuffer(
+		#ifdef EXP_ENQUEUE
+			OCL_CHECK(err, err = clQueue.enqueueWriteBuffer(
 							cl_out,
 							CL_TRUE,
 							0,
@@ -222,44 +288,42 @@ int main(int argc, char* argv[]) {
 							nullptr,
 							&out_mem_transfer_event));
 
-    	OCL_CHECK(err, err = fasta_transform_kernel.setArg(1, cl_out));
-    	
-
-		//Size of number of dna bases to transform, /16 for vector operations. 
-		
-		OCL_CHECK(err, err = fasta_transform_kernel.setArg(2, (unsigned int)(InpQueue.front().size()/16)));
-		#ifdef DEBUG
-			std::cout << "size of inp front: " << InpQueue.front().size() << std::endl;
+    		OCL_CHECK(err, err = fasta_transform_kernel.setArg(1, cl_out));
 		#endif
+    	
+		//Set OpenCL kernel inputs
+		#ifndef EXP_ENQUEUE
+			OCL_CHECK(err, err = fasta_transform_kernel.setArg(0, cl_inp));	
+    		OCL_CHECK(err, err = fasta_transform_kernel.setArg(1, cl_out));	
+		#endif
+		//Size of number of dna bases to transform, /16 for vector operations. 
+		OCL_CHECK(err, err = fasta_transform_kernel.setArg(2, (unsigned int)(InpQueue.front().size()/16)));
+
+		#ifndef EXP_ENQUEUE
+			OCL_CHECK(err, err = clQueue.enqueueMigrateMemObjects({cl_inp}, 0, NULL, &in_mem_transfer_event));
+		#endif
+
 
   		//////////////////////////////////////////////////////////////////
   		// END SETUP - START OCL KERNEL
   		// TODO: add in mwi and swi global memory versions
   		//////////////////////////////////////////////////////////////////
 	
-		//OCL_CHECK(err, err = clQueue.enqueueMigrateMemObjects({inp_dna, outp_dna}, 0));
 		#ifdef DEBUG
 			std::cout << "Starting Kernel as task\n";
 		#endif
-		clQueue.finish(); //
-		double start, end; //
 
-		//Start Kernel
-		start = omp_get_wtime(); //
 		OCL_CHECK(err, err = clQueue.enqueueTask(fasta_transform_kernel, nullptr, &kernel_event));
-		clQueue.finish(); //
-		end = omp_get_wtime(); //
-		//Read Back mem Object
 		
 		#ifdef DEBUG
 			std::cout << "Reading back Buffer from FPGA\n";
 		#endif
-			std::cout << "Time took: " << (end-start) << "\n";
 
-		//OCL_CHECK(err, err = clQueue.enqueueMigrateMemObjects({outp_dna}, CL_MIGRATE_MEM_OBJECT_HOST));
-
+		#ifndef EXP_ENQUEUE
+			OCL_CHECK(err, err = clQueue.enqueueMigrateMemObjects({cl_out}, CL_MIGRATE_MEM_OBJECT_HOST, NULL, &read_mem_transfer_event));
+		#else
 					
-		OCL_CHECK(err, err = clQueue.enqueueReadBuffer(
+			OCL_CHECK(err, err = clQueue.enqueueReadBuffer(
 							cl_out,
 							CL_TRUE,
 							0,
@@ -267,11 +331,12 @@ int main(int argc, char* argv[]) {
 							OutQueue.front().data(),
 							nullptr,
 							&read_mem_transfer_event));
-		
+		#endif
 		clQueue.finish();
+
 		#ifdef DEBUG
 			std::cout << "Sending to server...\n";
-			std::cout << "\t OutQueue vector size is: " << OutQueue.size();
+			//std::cout << "\t OutQueue vector size is: " << OutQueue.size();
 		#endif
 
 		//Transfer Buffer to CrunchServer
@@ -295,18 +360,19 @@ int main(int argc, char* argv[]) {
 				right_iter = right_iter + DC_MESSAGE_SIZE;
 			}
 
-			#ifdef DEBUG
+			
 				#ifdef PRINTOUT
   				std::cout << "Output Bector: \n";
 				for (auto i = message.begin(); i != message.end(); ++i){
                 	if (*i != 0){
 						std::cout << std::hex << (0xFF & (*i)) << " ";
+						//std::cout << +(*i) << " ";
             		}
 				}		
 				std::cout << "\n" << std::dec;
 				#endif
-			#endif
-			serv.LoadData(message);
+			
+			//serv.LoadData(message);
 			i += message.size();
 		
 			//std::cout << "sending message!\n\tSize: " << message.size();
@@ -324,7 +390,7 @@ int main(int argc, char* argv[]) {
 		#ifdef TIMING
 			cl_ulong time_start = 0;
 			cl_ulong time_end = 0;
-			cl_ulong nanoSeconds = 0;
+			//cl_ulong nanoSeconds = 0;
 
 		#ifdef DEBUG
 			std::cout << "Timing calculations for loop:\n";
@@ -334,14 +400,14 @@ int main(int argc, char* argv[]) {
 			//Inp buffer timing
   			clGetEventProfilingInfo(in_mem_transfer_event.get(), CL_PROFILING_COMMAND_START, sizeof(time_start), &time_start, NULL);
   			clGetEventProfilingInfo(in_mem_transfer_event.get(), CL_PROFILING_COMMAND_END, sizeof(time_end), &time_end, NULL);
-  			nanoSeconds = time_end-time_start;
+  			//nanoSeconds = time_end-time_start;
 			//(cl_double)(end - start)*(cl_double)(1e-06);
   			std::cout << "\tOpenCl Inp Buffer write time: " << (cl_double)(time_end-time_start)*(cl_double)(1e-06) << " milliseconds\n";
 
 			//Outp buffer timing
 			clGetEventProfilingInfo(out_mem_transfer_event.get(), CL_PROFILING_COMMAND_START, sizeof(time_start), &time_start, NULL);
             clGetEventProfilingInfo(out_mem_transfer_event.get(), CL_PROFILING_COMMAND_END, sizeof(time_end), &time_end, NULL);
-            nanoSeconds = time_end-time_start;
+            //nanoSeconds = time_end-time_start;
             std::cout<<"\tOpenCl Outp Buffer write time: " << (cl_double)(time_end-time_start)*(cl_double)(1e-06) << " milliseconds\n";;
 
 			//Kernel timing
@@ -351,7 +417,7 @@ int main(int argc, char* argv[]) {
 			//read_mem_transfer_event
             clGetEventProfilingInfo(read_mem_transfer_event.get(), CL_PROFILING_COMMAND_START, sizeof(time_start), &time_start, NULL);
             clGetEventProfilingInfo(read_mem_transfer_event.get(), CL_PROFILING_COMMAND_END, sizeof(time_end), &time_end, NULL);
-            nanoSeconds = time_end-time_start;
+            //nanoSeconds = time_end-time_start;
             std::cout << "\tOpenCL read back buffer time: " << (cl_double)(time_end-time_start)*(cl_double)(1e-06) << " milliseconds\n";
 		#endif
 		#ifdef DEBUG
@@ -366,3 +432,4 @@ int main(int argc, char* argv[]) {
 	serv.Stop();
 	return 0;
 }
+

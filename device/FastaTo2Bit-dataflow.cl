@@ -9,6 +9,8 @@
 //unsigned int16 corresponds to 64 output chars or 
 //
 
+#define BUFFER_SIZE 1048576
+
 
 #define FIRST_POS   6
 #define SECOND_POS  4
@@ -19,78 +21,46 @@
 #define INT_MASK_3 0x00030000
 #define INT_MASK_4 0x03000000
 
+__constant uint c_size = 1048576;
 
 //__attribute__((vect_type_hint(char16)))
-__kernel
-__attribute__((xcl_dataflow))
-__attribute__((reqd_work_group_size(1,1,1)))
-void FastaTo2Bit_loop(global const uint16* inp_dna, global uchar16* outp_dna, const unsigned int size)
+
+
+static void read_inp(__global const uint16* inp, uint16* buf_in, const unsigned int size)
+{	
+    __attribute__((xcl_pipeline_loop(1)))
+    __attribute__((xcl_loop_tripcount(c_size, c_size)))
+	read: for (unsigned int i = 0; i < size; i++){
+		buf_in[i] = inp[i];
+	}
+}
+
+static void write_out(__global uchar16* out, uchar16* buf_out, const unsigned int size)
 {
-	__attribute__((xcl_dataflow))
-	//__attribute__((xcl_pipeline_loop(1)))
-	//__attribute__((opencl_unroll_hint(n)))
-	LOOP_1: for(unsigned int i = 0; i < size;  i++)
-	{
-		
+	__attribute__((xcl_pipeline_loop(1)))
+    __attribute__((xcl_loop_tripcount(c_size, c_size)))
+    write: for (unsigned int i = 0 ; i < size ; i++){
+        out[i] = buf_out[i];
+    }
+}
+
+void convert_fasta(uint16* inp_buf, uchar16* outp_buf, const unsigned int size)
+{
+
+	__attribute__((xcl_pipeline_loop(1)))
+    __attribute__((xcl_loop_tripcount(c_size, c_size)))
+    convert: for (unsigned int i = 0 ; i < size ; i++){
 		uint16 hold = 0;
 		uchar16 out = 0;
 		uint16 MASK = 0x06060606;
-		/*	
-		if(i == 0){	
-			printf("---------Testing Input------------\n");	
-			printf("%u\n", inp_dna[i].s0);
-			printf("%u\n", inp_dna[i].s1);
-			printf("%u\n", inp_dna[i].s2);
-			printf("%u\n", inp_dna[i].s3);
-			printf("%u\n", inp_dna[i].s4);
-			printf("%u\n", inp_dna[i].s5);
-			printf("%u\n", inp_dna[i].s6);
-			printf("%u\n", inp_dna[i].s7);
-			printf("%u\n", inp_dna[i].s8);
-			printf("%u\n", inp_dna[i].s9);
-			printf("%u\n", inp_dna[i].sa);
-			printf("%u\n", inp_dna[i].sb);
-			printf("%u\n", inp_dna[i].sc);
-			printf("%u\n", inp_dna[i].sd);
-			printf("%u\n", inp_dna[i].se);
-			printf("%u\n", inp_dna[i].sf);
-		}
-		*/
-		//__attribute__((xcl_pipeline_loop(1)))
-        //__attribute__((xcl_loop_tripcount(4, 4)))
-        //for (int j = 0 ; j < 4; j++){
-        //if(i == 0){
-		//	printf("%X\n", inp_dna[i].s0);
-		//}
-		hold = inp_dna[i] & MASK;
-		//if(i == 0){
-		//	printf("%X\n", hold.s0);
-		//}
+
+		hold = inp_buf[i] & MASK;
 		hold = hold >> 1;
-		//if(i == 0){
-		//	printf("%X\n", hold.s0);	
-		//}
-			//temp = temp << (6 - 2*j);
-			//hold = hold|temp;
-			//printf("%#08x\n", hold); 
-		//}
-		//out.s0 = hold.s0 << FIRST_POS | hold.s1 << SECOND_POS | hold.s2 << THIRD_POS | hold.s3 << FOURTH_POS;
-		//printf("0x%02X\n", (unsigned char)out[i].s0);
-		//out.s1 = hold.s4 << FIRST_POS | hold.s5 << SECOND_POS | hold.s6 << THIRD_POS | hold.s7 << FOURTH_POS;
-		//printf("0x%02X\n", (unsigned char)out[i].s1);
-		//out.s2 = hold.s8 << FIRST_POS | hold.s9 << SECOND_POS | hold.sA << THIRD_POS | hold.sB << FOURTH_POS;
-		//printf("0x%02X\n", (unsigned char)out[i].s2);
-		//out.s3 = hold.sC << FIRST_POS | hold.sD << SECOND_POS | hold.sE << THIRD_POS | hold.sF << FOURTH_POS;
-    	//printf("0x%02X\n", (unsigned char)out[i].s3);
-    	//outp_dna[i] = out;
     	
 		// out.sX = 0x( FIRST_POS | SECOND_POS | THIRD_POS | FORTH_POS )
 
 		out.s0 = ((hold.s0 & INT_MASK_1) << FIRST_POS) | ((hold.s0 & INT_MASK_2) >> SECOND_POS) |
 				  ((hold.s0 & INT_MASK_3) >> THIRD_POS) | ((hold.s0 & INT_MASK_4) >> FOURTH_POS) ;
-		//if(i == 0){
-		//	printf("%#08x\n", out.s0); 
-		//}
 		
 		out.s0 = ((hold.s0 & INT_MASK_1) << FIRST_POS) | ((hold.s0 & INT_MASK_2) >> SECOND_POS) |
 				  ((hold.s0 & INT_MASK_3) >> THIRD_POS) | ((hold.s0 & INT_MASK_4) >> FOURTH_POS) ;
@@ -140,11 +110,26 @@ void FastaTo2Bit_loop(global const uint16* inp_dna, global uchar16* outp_dna, co
 		out.sf = ((hold.sf & INT_MASK_1) << FIRST_POS) | ((hold.sf & INT_MASK_2) >> SECOND_POS) |
 				  ((hold.sf & INT_MASK_3) >> THIRD_POS) | ((hold.sf & INT_MASK_4) >> FOURTH_POS) ;
 
-		outp_dna[i] = out;
+		outp_buf[i] = out;
 	}
-
 }
 
-void convert(uint16 inp, char16 outp){
-	
+__attribute__((xcl_dataflow))
+void run_convert(__global const uint16* inp_dna, __global uchar16* outp_dna, const unsigned int size)
+{
+
+	uint16 buf_in[BUFFER_SIZE];
+	uchar16 buf_out[BUFFER_SIZE];
+
+	read_inp(inp_dna, buf_in, size);
+	convert_fasta(buf_in, buf_out, size);
+	write_out(outp_dna, buf_out, size);
+}
+
+__kernel
+__attribute__((reqd_work_group_size(1,1,1)))
+void FastaTo2Bit_dataflow(__global const uint16* inp_dna, __global uchar16* outp_dna, const unsigned int size)
+{
+	run_convert(inp_dna, outp_dna, size);		
+}
 

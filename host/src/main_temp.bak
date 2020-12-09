@@ -1,0 +1,99 @@
+#define INP_STREAM_WIDTH	64		//Number of Chars in width of input stream (512 bits / 8 bits in a char)
+#define OUT_STREAM_WIDTH	16		//Number of Chars in width of output stream (64 values * 2bits per value) / 8 bits in a char 
+#define FILE_SPLIT			8388608	//Split files on 1MiB / sizeof(unsigned int)
+
+
+//Vitis CL includes
+#include "xcl2.hpp"
+#include <CL/cl_ext_xilinx.h>
+
+//C++ includes
+#include <vector>
+#include <fstream>
+#include <limits>
+#include <deque>
+#include <omp.h>
+
+
+//User includes
+#include "../inc/fastato2bit.h"
+#include "../inc/CrunchServer.hpp"
+
+
+
+const std::string kernel_name = "FastaTo2Bit_loop";
+//FastaTo2Bit_loop
+
+using std::vector;
+using std::deque;
+
+int main(int argc, char* argv[]) {
+
+	if (argc !=3){
+		std::cout << "Usage: " << argv[0] << " <InputFile.fasta>" << " <XCLBIN File>" << std::endl;
+		return EXIT_FAILURE;
+  	}	
+  
+	//double atime1 = omp_get_wtime();
+
+  	////////////////////////////////////////////////////////
+  	//Open XLBIN, InputFile and create buffers	
+	std::string binaryFile = argv[2];
+
+	//std::ifstream f;
+	//f.open(argv[1], std::ios_base::in | std::ios_base::binary);
+
+	FILE* f = fopen(argv[1], "r");
+
+	if (f==NULL) {
+		std::cout << "File error\n"; 
+		exit (1);
+	}
+	//Find size of file
+	fseek (f, 0 , SEEK_END);
+  	size_t inp_size = ftello(f); //Number of bases in the file
+  	rewind(f);
+
+	deque<vector<unsigned int, aligned_allocator<unsigned int>>> InpQueue;	//Char input read from file
+	deque<vector<char, aligned_allocator<char>>> OutQueue;					//2-Bit packed out - Each char is 4 bases
+	
+	//deque<vector<char, aligned_allocator<char>>> InpQueue;
+	//deque<vector<char>>> OutQueue;
+	//f.ignore ( std::numeric_limits<std::streamsize>::max() ); //Run to end of file
+	//size_t inp_size = (size_t)f.gcount();
+	//f.clear(); 											  //Reset
+	//f.seekg(0,std::ios_base::beg);						  //Return to beginning
+
+	std::cout << "Gcount returned (total num of DNA bases): "<<inp_size << std::endl;
+	size_t num_int = inp_size / sizeof(unsigned int);
+	std::cout << "Total number of integers: "<< num_int << std::endl;
+	std::cout << "Total Number of 2bit compacted chars: " << inp_size / 4 << std::endl <<std::endl;
+
+	InpQueue.emplace_back(FILE_SPLIT, 0);
+	size_t num_read = 0; 
+	std::vector<unsigned int, aligned_allocator<unsigned int>> Hold;
+		
+	while(num_read < num_int)
+	{
+		size_t num_to_read = FILE_SPLIT;
+		if( (num_read + FILE_SPLIT) > inp_size ){
+		//adjust size for smaller file input should only happen once
+			num_to_read = num_int - num_read;
+			Hold.resize(num_to_read, 0);
+		}
+		if( (fread(Hold.data(), (sizeof(unsigned int)), num_to_read, f) % 4 )){
+			std::cout << "Fell into not devisiable by four trap\n";
+		}
+		//push onto queue
+		std::cout << "Read into queue: " << num_to_read << std::endl;
+		#ifdef DEBUG
+			for (auto i = Hold.begin(); i != Hold.end(); ++i){
+               	std::cout << +(*i) << ", ";
+           	}
+			std::cout << std::endl;	
+		#endif
+		num_read += num_to_read;
+	}
+		
+			
+
