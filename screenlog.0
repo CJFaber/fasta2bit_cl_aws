@@ -1,45 +1,5 @@
-centos@ip-172-31-20-191 fasta2bit_kafka $ ls
-2BitOut.2b  emconfig.json        [0m[01;32mFastaTo2Bit[0m  Makefile      rand128.fasta  randFasta.cpp  [01;32mrun.sh[0m       testfile.fasta  xcd.log
-[01;34mdevice[0m      emulation_debug.log  [01;34mhost[0m         rand10.fasta  rand256.fasta  [01;32mrandFasta.out[0m  screenlog.0  [01;32mutils.mk[0m        xrc.log
-centos@ip-172-31-20-191 fasta2bit_kafka $ lsvim Makefile [2Pcat run.sh[Cls[Kmake check TARGET=sw_emu DEVICE=$AWS_PLATFORM all[K build TARGET=sw_emu DEVICE=$AWS_PLATFORM allcheck[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cbuild[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K build TARGET=sw_emu DEVICE=$AWS_PLATFORM all[1P[1P[1P[1P[1P[1P[1@h[1@w
-/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2019.2
-mkdir -p ./device/FastaTo2Bit-loop_temp_dir/_x.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1
-mkdir -p ./device/logs
-v++ -t hw --platform /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xpfm --save-temps  --temp_dir ./device/FastaTo2Bit-loop_temp_dir/_x.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1 --log_dir ./device/logs -c -k FastaTo2Bit_loop -I'device' -o'device/FastaTo2Bit-loop_temp_dir/_x.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/FastaTo2Bit_loop.xo' 'device/FastaTo2Bit-loop.cl'
-Option Map File Used: '/opt/Xilinx/Vitis/2019.2/data/vitis/vpp/optMap.xml'
-
-****** v++ v2019.2 (64-bit)
-  **** SW Build 2700185 on Thu Oct 24 18:45:48 MDT 2019
-    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
-
-INFO: [v++ 60-1306] Additional information associated with this v++ compile can be found at:
-	Reports: /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_temp_dir/_x.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/reports/FastaTo2Bit_loop
-	Log files: /home/centos/fasta2bit_kafka/device/logs/FastaTo2Bit_loop
-Running Dispatch Server on port:42375
-INFO: [v++ 60-1548] Creating build summary session with primary output /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_temp_dir/_x.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/FastaTo2Bit_loop.xo.compile_summary, at Sun Jul 26 08:33:56 2020
-INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Sun Jul 26 08:33:56 2020
-Running Rule Check Server on port:40338
-INFO: [v++ 60-1315] Creating rulecheck session with output '/home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_temp_dir/_x.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/reports/FastaTo2Bit_loop/v++_compile_FastaTo2Bit_loop_guidance.html', at Sun Jul 26 08:33:57 2020
-INFO: [v++ 60-895]   Target platform: /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xpfm
-INFO: [v++ 60-1578]   This platform contains Xilinx Shell Archive '/home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/hw/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xsa'
-INFO: [v++ 60-585] Compiling for hardware target
-INFO: [v++ 60-423]   Target device: xilinx_aws-vu9p-f1_shell-v04261818_201920_1
-INFO: [v++ 60-242] Creating kernel: 'FastaTo2Bit_loop'
-
-===>The following messages were generated while  performing high-level synthesis for kernel: FastaTo2Bit_loop Log file: /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_temp_dir/_x.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/FastaTo2Bit_loop/FastaTo2Bit_loop/vivado_hls.log :
-INFO: [v++ 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
-INFO: [v++ 204-61] Pipelining loop 'Loop 1'.
-INFO: [v++ 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 3.
-INFO: [v++ 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
-INFO: [v++ 200-789] **** Estimated Fmax: 342.47 MHz
-INFO: [v++ 60-594] Finished kernel compilation
-INFO: [v++ 60-244] Generating system estimate report...
-INFO: [v++ 60-1092] Generated system estimate report: /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_temp_dir/_x.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/reports/FastaTo2Bit_loop/system_estimate_FastaTo2Bit_loop.xtxt
-INFO: [v++ 60-586] Created device/FastaTo2Bit-loop_temp_dir/_x.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/FastaTo2Bit_loop.xo
-INFO: [v++ 60-791] Total elapsed time: 0h 0m 29s
-#v++ -t hw --platform /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xpfm --save-temps  --temp_dir ./device/FastaTo2Bit-loop_temp_dir/_x.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1 -c -k FastaTo2Bit_loop -I'device' -o'device/FastaTo2Bit-loop_temp_dir/_x.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/FastaTo2Bit_loop.xo' 'device/FastaTo2Bit-loop.cl'
-mkdir -p ./device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1
-v++ -t hw --platform /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xpfm --save-temps  --temp_dir ./device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1 --log_dir ./device/logs -l  -o'device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/FastaTo2Bit-loop.xclbin' device/FastaTo2Bit-loop_temp_dir/_x.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/FastaTo2Bit_loop.xo
+centos@ip-172-31-20-191 fasta2bit_cl_aws $ ./bu[K[K[K[K^C
+centos@ip-172-31-20-191 fasta2bit_cl_aws $ ./script_build.sh 
 Option Map File Used: '/opt/Xilinx/Vitis/2019.2/data/vitis/vpp/optMap.xml'
 
 ****** v++ v2019.2 (64-bit)
@@ -55,295 +15,543 @@ INFO: [v++ 60-897] Reading --xp value from platform: vivado_prop:run.__KERNEL__.
 INFO: [v++ 60-897] Reading --xp value from platform: vivado_param:synth.elaboration.rodinMoreOptions={rt::set_parameter disableOregPackingUram true}
 WARNING: [v++ 60-642] Deprecated parameter name: compiler.lockFlowCritSlackThreshold
 INFO: [v++ 60-1306] Additional information associated with this v++ link can be found at:
-	Reports: /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/reports/link
-	Log files: /home/centos/fasta2bit_kafka/device/logs/link
-Running Dispatch Server on port:40586
-INFO: [v++ 60-1548] Creating build summary session with primary output /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/FastaTo2Bit-loop.xclbin.link_summary, at Sun Jul 26 08:34:27 2020
-INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Sun Jul 26 08:34:27 2020
-Running Rule Check Server on port:36226
-INFO: [v++ 60-1315] Creating rulecheck session with output '/home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/reports/link/v++_link_FastaTo2Bit-loop_guidance.html', at Sun Jul 26 08:34:28 2020
+	Reports: /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/reports/link
+	Log files: /home/centos/fasta2bit_cl_aws/device/logs/link
+Running Dispatch Server on port:40017
+INFO: [v++ 60-1548] Creating build summary session with primary output /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/FastaTo2Bit-dataflow.xclbin.link_summary, at Wed Dec  9 21:21:48 2020
+INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Wed Dec  9 21:21:48 2020
+Running Rule Check Server on port:38629
+INFO: [v++ 60-1315] Creating rulecheck session with output '/home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/reports/link/v++_link_FastaTo2Bit-dataflow_guidance.html', at Wed Dec  9 21:21:49 2020
 INFO: [v++ 60-895]   Target platform: /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xpfm
 INFO: [v++ 60-1578]   This platform contains Xilinx Shell Archive '/home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/hw/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xsa'
 INFO: [v++ 60-629] Linking for hardware target
 INFO: [v++ 60-423]   Target device: xilinx_aws-vu9p-f1_shell-v04261818_201920_1
 INFO: [v++ 60-1332] Run 'run_link' status: Not started
-INFO: [v++ 60-1443] [08:34:31] Run run_link: Step system_link: Started
-INFO: [v++ 60-1453] Command Line: system_link --xo /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_temp_dir/_x.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/FastaTo2Bit_loop.xo -keep --xpfm /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xpfm --target hw --output_dir /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int --temp_dir /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link
-INFO: [v++ 60-1454] Run Directory: /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/run_link
+INFO: [v++ 60-1443] [21:21:52] Run run_link: Step system_link: Started
+INFO: [v++ 60-1453] Command Line: system_link --xo /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_temp_dir/_x.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/FastaTo2Bit_dataflow.xo -keep --xpfm /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xpfm --target hw --output_dir /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int --temp_dir /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link
+INFO: [v++ 60-1454] Run Directory: /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/run_link
 INFO: [SYSTEM_LINK 82-76] Reading emulation BD and HPFM information
-INFO: [SYSTEM_LINK 60-1316] Initiating connection to rulecheck server, at Sun Jul 26 08:34:32 2020
-INFO: [SYSTEM_LINK 82-70] Extracting xo v3 file /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_temp_dir/_x.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/FastaTo2Bit_loop.xo
-INFO: [KernelCheck 83-118] 'FastaTo2Bit_loop' kernel.xml and component.xml caseness discrepency is being corrected, S_AXI_CONTROL is being replaced by s_axi_control
+INFO: [SYSTEM_LINK 60-1316] Initiating connection to rulecheck server, at Wed Dec  9 21:21:53 2020
+INFO: [SYSTEM_LINK 82-70] Extracting xo v3 file /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_temp_dir/_x.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/FastaTo2Bit_dataflow.xo
+INFO: [KernelCheck 83-118] 'FastaTo2Bit_dataflow' kernel.xml and component.xml caseness discrepency is being corrected, S_AXI_CONTROL is being replaced by s_axi_control
 INFO: [KernelCheck 83-118] 'inp_dna' kernel.xml and component.xml caseness discrepency is being corrected, S_AXI_CONTROL is being replaced by s_axi_control
 INFO: [KernelCheck 83-118] 'outp_dna' kernel.xml and component.xml caseness discrepency is being corrected, S_AXI_CONTROL is being replaced by s_axi_control
 INFO: [KernelCheck 83-118] 'size' kernel.xml and component.xml caseness discrepency is being corrected, S_AXI_CONTROL is being replaced by s_axi_control
-INFO: [SYSTEM_LINK 82-53] Creating IP database /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/_sysl/.cdb/xd_ip_db.xml
-INFO: [SYSTEM_LINK 82-38] [08:34:32] build_xd_ip_db started: /opt/Xilinx/Vitis/2019.2/bin/build_xd_ip_db -ip_search 0  -sds-pf /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.hpfm -clkid 0 -ip /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/iprepo/xilinx_com_hls_FastaTo2Bit_loop_1_0,FastaTo2Bit_loop -o /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/_sysl/.cdb/xd_ip_db.xml
-INFO: [SYSTEM_LINK 82-37] [08:34:36] build_xd_ip_db finished successfully
-Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 278.945 ; gain = 0.000 ; free physical = 26075 ; free virtual = 50001
+INFO: [SYSTEM_LINK 82-53] Creating IP database /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/_sysl/.cdb/xd_ip_db.xml
+INFO: [SYSTEM_LINK 82-38] [21:21:53] build_xd_ip_db started: /opt/Xilinx/Vitis/2019.2/bin/build_xd_ip_db -ip_search 0  -sds-pf /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.hpfm -clkid 0 -ip /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/iprepo/xilinx_com_hls_FastaTo2Bit_dataflow_1_0,FastaTo2Bit_dataflow -o /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/_sysl/.cdb/xd_ip_db.xml
+INFO: [SYSTEM_LINK 82-37] [21:21:58] build_xd_ip_db finished successfully
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 278.945 ; gain = 0.000 ; free physical = 22898 ; free virtual = 48740
 INFO: [SYSTEM_LINK 82-51] Create system connectivity graph
-INFO: [SYSTEM_LINK 82-102] Applying explicit connections to the system connectivity graph: /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/cfgraph/cfgen_cfgraph.xml
-INFO: [SYSTEM_LINK 82-38] [08:34:36] cfgen started: /opt/Xilinx/Vitis/2019.2/bin/cfgen -dmclkid 0 -r /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/_sysl/.cdb/xd_ip_db.xml -o /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/cfgraph/cfgen_cfgraph.xml
+INFO: [SYSTEM_LINK 82-102] Applying explicit connections to the system connectivity graph: /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/cfgraph/cfgen_cfgraph.xml
+INFO: [SYSTEM_LINK 82-38] [21:21:58] cfgen started: /opt/Xilinx/Vitis/2019.2/bin/cfgen -dmclkid 0 -r /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/_sysl/.cdb/xd_ip_db.xml -o /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/cfgraph/cfgen_cfgraph.xml
 INFO: [CFGEN 83-0] Kernel Specs: 
-INFO: [CFGEN 83-0]   kernel: FastaTo2Bit_loop, num: 1  {FastaTo2Bit_loop_1}
-INFO: [CFGEN 83-2226] Inferring mapping for argument FastaTo2Bit_loop_1.inp_dna to DDR[0]
-INFO: [CFGEN 83-2226] Inferring mapping for argument FastaTo2Bit_loop_1.outp_dna to DDR[0]
-INFO: [SYSTEM_LINK 82-37] [08:34:37] cfgen finished successfully
-Time (s): cpu = 00:00:00.94 ; elapsed = 00:00:00.97 . Memory (MB): peak = 288.684 ; gain = 0.000 ; free physical = 26075 ; free virtual = 50001
+INFO: [CFGEN 83-0]   kernel: FastaTo2Bit_dataflow, num: 1  {FastaTo2Bit_dataflow_1}
+INFO: [CFGEN 83-2226] Inferring mapping for argument FastaTo2Bit_dataflow_1.inp_dna to DDR[0]
+INFO: [CFGEN 83-2226] Inferring mapping for argument FastaTo2Bit_dataflow_1.outp_dna to DDR[0]
+INFO: [SYSTEM_LINK 82-37] [21:21:59] cfgen finished successfully
+Time (s): cpu = 00:00:00.96 ; elapsed = 00:00:00.97 . Memory (MB): peak = 288.684 ; gain = 0.000 ; free physical = 22898 ; free virtual = 48740
 INFO: [SYSTEM_LINK 82-52] Create top-level block diagram
-INFO: [SYSTEM_LINK 82-38] [08:34:37] cf2bd started: /opt/Xilinx/Vitis/2019.2/bin/cf2bd  --linux --trace_buffer 1024 --input_file /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/cfgraph/cfgen_cfgraph.xml --ip_db /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/_sysl/.cdb/xd_ip_db.xml --cf_name dr --working_dir /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/_sysl/.xsd --temp_dir /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link --output_dir /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int --target_bd cl.bd
-INFO: [CF2BD 82-31] Launching cf2xd: cf2xd -linux -trace-buffer 1024 -i /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/cfgraph/cfgen_cfgraph.xml -r /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/_sysl/.cdb/xd_ip_db.xml -o dr.xml
+INFO: [SYSTEM_LINK 82-38] [21:21:59] cf2bd started: /opt/Xilinx/Vitis/2019.2/bin/cf2bd  --linux --trace_buffer 1024 --input_file /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/cfgraph/cfgen_cfgraph.xml --ip_db /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/_sysl/.cdb/xd_ip_db.xml --cf_name dr --working_dir /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/_sysl/.xsd --temp_dir /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link --output_dir /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int --target_bd cl.bd
+INFO: [CF2BD 82-31] Launching cf2xd: cf2xd -linux -trace-buffer 1024 -i /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/cfgraph/cfgen_cfgraph.xml -r /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/_sysl/.cdb/xd_ip_db.xml -o dr.xml
 INFO: [CF2BD 82-28] cf2xd finished successfully
-INFO: [CF2BD 82-31] Launching cf_xsd: cf_xsd -disable-address-gen -bd cl.bd -dn dr -dp /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/_sysl/.xsd
+INFO: [CF2BD 82-31] Launching cf_xsd: cf_xsd -disable-address-gen -bd cl.bd -dn dr -dp /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/_sysl/.xsd
 [KINFO: [CF2BD 82-28] cf_xsd finished successfully
-INFO: [SYSTEM_LINK 82-37] [08:34:39] cf2bd finished successfully
-Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 288.684 ; gain = 0.000 ; free physical = 26069 ; free virtual = 49999
-INFO: [v++ 60-1441] [08:34:39] Run run_link: Step system_link: Completed
-Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 686.586 ; gain = 0.000 ; free physical = 26088 ; free virtual = 50018
-INFO: [v++ 60-1443] [08:34:39] Run run_link: Step cf2sw: Started
-INFO: [v++ 60-1453] Command Line: cf2sw -sdsl /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/sdsl.dat -rtd /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/cf2sw.rtd -xclbin /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/xclbin_orig.xml -o /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/xclbin_orig.1.xml
-INFO: [v++ 60-1454] Run Directory: /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/run_link
-INFO: [v++ 60-1441] [08:34:39] Run run_link: Step cf2sw: Completed
-Time (s): cpu = 00:00:00.44 ; elapsed = 00:00:00.51 . Memory (MB): peak = 686.586 ; gain = 0.000 ; free physical = 26088 ; free virtual = 50019
-INFO: [v++ 60-1443] [08:34:39] Run run_link: Step rtd2_system_diagram: Started
-INFO: [v++ 60-1453] Command Line: rtd2SystemDiagram --rtdJsonFileName /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/cf2sw.rtd --diagramJsonFileName /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/systemDiagramModel.json --platformFilePath /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xpfm --generatedByName v++ --generatedByVersion 2019.2 --generatedByChangeList 2700185 --generatedByTimeStamp Thu Oct 24 18:45:48 MDT 2019 --generatedByOptions /opt/Xilinx/Vitis/2019.2/bin/unwrapped/lnx64.o/v++ -t hw --platform /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xpfm --save-temps --temp_dir ./device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1 --log_dir ./device/logs -l -odevice/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/FastaTo2Bit-loop.xclbin device/FastaTo2Bit-loop_temp_dir/_x.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/FastaTo2Bit_loop.xo  --generatedByXclbinName FastaTo2Bit-loop --kernelInfoDataFileName /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/kernel_info.dat
-INFO: [v++ 60-1454] Run Directory: /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/run_link
+INFO: [SYSTEM_LINK 82-37] [21:22:00] cf2bd finished successfully
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 288.684 ; gain = 0.000 ; free physical = 22892 ; free virtual = 48738
+INFO: [v++ 60-1441] [21:22:00] Run run_link: Step system_link: Completed
+Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 686.582 ; gain = 0.000 ; free physical = 22911 ; free virtual = 48757
+INFO: [v++ 60-1443] [21:22:00] Run run_link: Step cf2sw: Started
+INFO: [v++ 60-1453] Command Line: cf2sw -sdsl /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/sdsl.dat -rtd /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/cf2sw.rtd -xclbin /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/xclbin_orig.xml -o /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/xclbin_orig.1.xml
+INFO: [v++ 60-1454] Run Directory: /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/run_link
+INFO: [v++ 60-1441] [21:22:01] Run run_link: Step cf2sw: Completed
+Time (s): cpu = 00:00:00.46 ; elapsed = 00:00:00.51 . Memory (MB): peak = 686.582 ; gain = 0.000 ; free physical = 22911 ; free virtual = 48757
+INFO: [v++ 60-1443] [21:22:01] Run run_link: Step rtd2_system_diagram: Started
+INFO: [v++ 60-1453] Command Line: rtd2SystemDiagram --rtdJsonFileName /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/cf2sw.rtd --diagramJsonFileName /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/systemDiagramModel.json --platformFilePath /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xpfm --generatedByName v++ --generatedByVersion 2019.2 --generatedByChangeList 2700185 --generatedByTimeStamp Thu Oct 24 18:45:48 MDT 2019 --generatedByOptions /opt/Xilinx/Vitis/2019.2/bin/unwrapped/lnx64.o/v++ -t hw --platform /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xpfm --save-temps --temp_dir ./device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1 --log_dir ./device/logs -l -odevice/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/FastaTo2Bit-dataflow.xclbin device/FastaTo2Bit-dataflow_temp_dir/_x.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/FastaTo2Bit_dataflow.xo  --generatedByXclbinName FastaTo2Bit-dataflow --kernelInfoDataFileName /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/kernel_info.dat
+INFO: [v++ 60-1454] Run Directory: /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/run_link
 WARNING: [v++ 82-168] hardwarePlatform.board.name is not in the platform information.
 WARNING: [v++ 82-169] hardwarePlatform.board.part is not in the platform information.
 WARNING: [v++ 82-167] hardwarePlatform.board.boardPart is not in the platform information.
-INFO: [v++ 60-839] Read in kernel information from file '/home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/kernel_info.dat'.
+INFO: [v++ 60-839] Read in kernel information from file '/home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/kernel_info.dat'.
 WARNING: [v++ 82-158] Unable to populate kernel available resources DSP entry.
 WARNING: [v++ 82-163] Unable to populate user region available resources.  The platform file deos not contain a hardwarePlatform.devices..core.availableResources entry
-INFO: [v++ 60-1441] [08:34:41] Run run_link: Step rtd2_system_diagram: Completed
-Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 686.586 ; gain = 0.000 ; free physical = 26089 ; free virtual = 50019
-INFO: [v++ 60-1443] [08:34:41] Run run_link: Step vpl: Started
-INFO: [v++ 60-1453] Command Line: vpl -t hw -f /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xpfm -s --output_dir /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int --log_dir /home/centos/fasta2bit_kafka/device/logs/link --report_dir /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/reports/link --config /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/vplConfig.ini -k /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/kernel_info.dat --webtalk_flag Vitis --temp_dir /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link --no-info --tlog_dir /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/.tlog/v++_link_FastaTo2Bit-loop --iprepo /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/xo/ip_repo/xilinx_com_hls_FastaTo2Bit_loop_1_0 --messageDb /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/run_link/vpl.pb /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/dr.bd.tcl
-INFO: [v++ 60-1454] Run Directory: /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/run_link
+INFO: [v++ 60-1441] [21:22:02] Run run_link: Step rtd2_system_diagram: Completed
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 686.582 ; gain = 0.000 ; free physical = 22912 ; free virtual = 48759
+INFO: [v++ 60-1443] [21:22:02] Run run_link: Step vpl: Started
+INFO: [v++ 60-1453] Command Line: vpl -t hw -f /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xpfm -s --output_dir /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int --log_dir /home/centos/fasta2bit_cl_aws/device/logs/link --report_dir /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/reports/link --config /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/vplConfig.ini -k /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/kernel_info.dat --webtalk_flag Vitis --temp_dir /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link --no-info --tlog_dir /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/.tlog/v++_link_FastaTo2Bit-dataflow --iprepo /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/xo/ip_repo/xilinx_com_hls_FastaTo2Bit_dataflow_1_0 --messageDb /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/run_link/vpl.pb /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/dr.bd.tcl
+INFO: [v++ 60-1454] Run Directory: /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/run_link
 
 ****** vpl v2019.2 (64-bit)
   **** SW Build 2700185 on Thu Oct 24 18:45:48 MDT 2019
     ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 
-INFO: [VPL 60-839] Read in kernel information from file '/home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/kernel_info.dat'.
+INFO: [VPL 60-839] Read in kernel information from file '/home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/kernel_info.dat'.
 WARNING: [VPL 60-642] Deprecated parameter name: compiler.lockFlowCritSlackThreshold
 INFO: [VPL 60-423]   Target device: xilinx_aws-vu9p-f1_shell-v04261818_201920_1
-INFO: [VPL 60-1032] Extracting hardware platform to /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/vivado/vpl/.local/hw_platform
-[08:34:55] Run vpl: Step create_project: Started
+INFO: [VPL 60-1032] Extracting hardware platform to /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/vivado/vpl/.local/hw_platform
+[21:22:15] Run vpl: Step create_project: Started
 Creating Vivado project.
-[08:34:56] Run vpl: Step create_project: Completed
-[08:34:56] Run vpl: Step create_bd: Started
-[08:35:23] Run vpl: Step create_bd: Completed
-[08:35:23] Run vpl: Step update_bd: Started
-[08:35:25] Run vpl: Step update_bd: Completed
-[08:35:25] Run vpl: Step generate_target: Started
-[08:36:41] Run vpl: Step generate_target: RUNNING...
-^Xa   [08:37:51] Run vpl: Step generate_target: Completed
-[08:37:51] Run vpl: Step config_hw_runs: Started
-[08:37:54] Run vpl: Step config_hw_runs: Completed
-[08:37:54] Run vpl: Step synth: Started
-[08:38:25] Block-level synthesis in progress, 0 of 36 jobs complete, 2 jobs running.
-[08:38:55] Block-level synthesis in progress, 0 of 36 jobs complete, 2 jobs running.
-[08:39:26] Block-level synthesis in progress, 0 of 36 jobs complete, 2 jobs running.
-[08:39:57] Block-level synthesis in progress, 0 of 36 jobs complete, 2 jobs running.
-[08:40:27] Block-level synthesis in progress, 0 of 36 jobs complete, 2 jobs running.
-[08:40:57] Block-level synthesis in progress, 1 of 36 jobs complete, 1 job running.
-[08:41:28] Block-level synthesis in progress, 1 of 36 jobs complete, 2 jobs running.
-[08:41:58] Block-level synthesis in progress, 1 of 36 jobs complete, 2 jobs running.
-[08:42:28] Block-level synthesis in progress, 1 of 36 jobs complete, 2 jobs running.
-[08:42:58] Block-level synthesis in progress, 1 of 36 jobs complete, 2 jobs running.
-[08:43:28] Block-level synthesis in progress, 1 of 36 jobs complete, 2 jobs running.
-[08:43:59] Block-level synthesis in progress, 2 of 36 jobs complete, 2 jobs running.
-[08:44:29] Block-level synthesis in progress, 3 of 36 jobs complete, 1 job running.
-[08:44:59] Block-level synthesis in progress, 3 of 36 jobs complete, 2 jobs running.
-[08:45:29] Block-level synthesis in progress, 3 of 36 jobs complete, 2 jobs running.
-[08:45:59] Block-level synthesis in progress, 3 of 36 jobs complete, 2 jobs running.
-[08:46:30] Block-level synthesis in progress, 3 of 36 jobs complete, 2 jobs running.
-[08:47:00] Block-level synthesis in progress, 4 of 36 jobs complete, 1 job running.
-[08:47:30] Block-level synthesis in progress, 5 of 36 jobs complete, 1 job running.
-[08:48:00] Block-level synthesis in progress, 5 of 36 jobs complete, 2 jobs running.
-[08:48:31] Block-level synthesis in progress, 5 of 36 jobs complete, 2 jobs running.
-[08:49:01] Block-level synthesis in progress, 5 of 36 jobs complete, 2 jobs running.
-[08:49:31] Block-level synthesis in progress, 5 of 36 jobs complete, 2 jobs running.
-[08:50:01] Block-level synthesis in progress, 6 of 36 jobs complete, 2 jobs running.
-[08:50:32] Block-level synthesis in progress, 6 of 36 jobs complete, 2 jobs running.
-[08:51:02] Block-level synthesis in progress, 7 of 36 jobs complete, 2 jobs running.
-[08:51:32] Block-level synthesis in progress, 7 of 36 jobs complete, 2 jobs running.
-[08:52:02] Block-level synthesis in progress, 7 of 36 jobs complete, 2 jobs running.
-[08:52:33] Block-level synthesis in progress, 8 of 36 jobs complete, 1 job running.
-[08:53:03] Block-level synthesis in progress, 8 of 36 jobs complete, 2 jobs running.
-[08:53:33] Block-level synthesis in progress, 8 of 36 jobs complete, 2 jobs running.
-[08:54:04] Block-level synthesis in progress, 8 of 36 jobs complete, 2 jobs running.
-[08:54:34] Block-level synthesis in progress, 9 of 36 jobs complete, 1 job running.
-[08:55:04] Block-level synthesis in progress, 10 of 36 jobs complete, 1 job running.
-[08:55:34] Block-level synthesis in progress, 10 of 36 jobs complete, 2 jobs running.
-[08:56:05] Block-level synthesis in progress, 10 of 36 jobs complete, 2 jobs running.
-[08:56:35] Block-level synthesis in progress, 10 of 36 jobs complete, 2 jobs running.
-[08:57:05] Block-level synthesis in progress, 10 of 36 jobs complete, 2 jobs running.
-[08:57:36] Block-level synthesis in progress, 11 of 36 jobs complete, 2 jobs running.
-[08:58:06] Block-level synthesis in progress, 11 of 36 jobs complete, 2 jobs running.
-[08:58:36] Block-level synthesis in progress, 11 of 36 jobs complete, 2 jobs running.
-[08:59:06] Block-level synthesis in progress, 12 of 36 jobs complete, 1 job running.
-[08:59:37] Block-level synthesis in progress, 12 of 36 jobs complete, 2 jobs running.
-[09:00:07] Block-level synthesis in progress, 13 of 36 jobs complete, 1 job running.
-[09:00:37] Block-level synthesis in progress, 13 of 36 jobs complete, 2 jobs running.
-[09:01:08] Block-level synthesis in progress, 13 of 36 jobs complete, 2 jobs running.
-[09:01:38] Block-level synthesis in progress, 13 of 36 jobs complete, 2 jobs running.
-[09:02:08] Block-level synthesis in progress, 15 of 36 jobs complete, 1 job running.
-[09:02:39] Block-level synthesis in progress, 15 of 36 jobs complete, 2 jobs running.
-[09:03:09] Block-level synthesis in progress, 15 of 36 jobs complete, 2 jobs running.
-[09:03:39] Block-level synthesis in progress, 15 of 36 jobs complete, 2 jobs running.
-[09:04:10] Block-level synthesis in progress, 15 of 36 jobs complete, 2 jobs running.
-[09:04:40] Block-level synthesis in progress, 15 of 36 jobs complete, 2 jobs running.
-[09:05:10] Block-level synthesis in progress, 16 of 36 jobs complete, 2 jobs running.
-[09:05:41] Block-level synthesis in progress, 17 of 36 jobs complete, 1 job running.
-[09:06:11] Block-level synthesis in progress, 17 of 36 jobs complete, 2 jobs running.
-[09:06:41] Block-level synthesis in progress, 17 of 36 jobs complete, 2 jobs running.
-[09:07:12] Block-level synthesis in progress, 17 of 36 jobs complete, 2 jobs running.
-[09:07:42] Block-level synthesis in progress, 18 of 36 jobs complete, 1 job running.
-[09:08:12] Block-level synthesis in progress, 18 of 36 jobs complete, 2 jobs running.
-[09:08:43] Block-level synthesis in progress, 18 of 36 jobs complete, 2 jobs running.
-[09:09:13] Block-level synthesis in progress, 18 of 36 jobs complete, 2 jobs running.
-[09:09:43] Block-level synthesis in progress, 18 of 36 jobs complete, 2 jobs running.
-[09:10:14] Block-level synthesis in progress, 19 of 36 jobs complete, 1 job running.
-[09:10:44] Block-level synthesis in progress, 19 of 36 jobs complete, 2 jobs running.
-[09:11:14] Block-level synthesis in progress, 20 of 36 jobs complete, 2 jobs running.
-[09:11:45] Block-level synthesis in progress, 20 of 36 jobs complete, 2 jobs running.
-[09:12:15] Block-level synthesis in progress, 20 of 36 jobs complete, 2 jobs running.
-[09:12:45] Block-level synthesis in progress, 20 of 36 jobs complete, 2 jobs running.
-[09:13:16] Block-level synthesis in progress, 21 of 36 jobs complete, 1 job running.
-[09:13:46] Block-level synthesis in progress, 22 of 36 jobs complete, 1 job running.
-[09:14:17] Block-level synthesis in progress, 22 of 36 jobs complete, 2 jobs running.
-[09:14:47] Block-level synthesis in progress, 22 of 36 jobs complete, 2 jobs running.
-[09:15:17] Block-level synthesis in progress, 22 of 36 jobs complete, 2 jobs running.
-[09:15:48] Block-level synthesis in progress, 22 of 36 jobs complete, 2 jobs running.
-[09:16:18] Block-level synthesis in progress, 23 of 36 jobs complete, 2 jobs running.
-[09:16:49] Block-level synthesis in progress, 24 of 36 jobs complete, 2 jobs running.
-[09:17:19] Block-level synthesis in progress, 24 of 36 jobs complete, 2 jobs running.
-[09:17:49] Block-level synthesis in progress, 24 of 36 jobs complete, 2 jobs running.
-[09:18:20] Block-level synthesis in progress, 24 of 36 jobs complete, 2 jobs running.
-[09:18:50] Block-level synthesis in progress, 25 of 36 jobs complete, 1 job running.
-[09:19:21] Block-level synthesis in progress, 27 of 36 jobs complete, 1 job running.
-[09:19:51] Block-level synthesis in progress, 27 of 36 jobs complete, 2 jobs running.
-[09:20:21] Block-level synthesis in progress, 27 of 36 jobs complete, 2 jobs running.
-[09:20:52] Block-level synthesis in progress, 27 of 36 jobs complete, 2 jobs running.
-[09:21:22] Block-level synthesis in progress, 27 of 36 jobs complete, 2 jobs running.
-[09:21:53] Block-level synthesis in progress, 29 of 36 jobs complete, 0 jobs running.
-[09:22:23] Block-level synthesis in progress, 29 of 36 jobs complete, 2 jobs running.
-[09:22:53] Block-level synthesis in progress, 29 of 36 jobs complete, 2 jobs running.
-[09:23:24] Block-level synthesis in progress, 29 of 36 jobs complete, 2 jobs running.
-[09:23:54] Block-level synthesis in progress, 29 of 36 jobs complete, 2 jobs running.
-[09:24:25] Block-level synthesis in progress, 29 of 36 jobs complete, 2 jobs running.
-[09:24:55] Block-level synthesis in progress, 29 of 36 jobs complete, 2 jobs running.
-[09:25:25] Block-level synthesis in progress, 31 of 36 jobs complete, 1 job running.
-[09:25:56] Block-level synthesis in progress, 31 of 36 jobs complete, 2 jobs running.
-[09:26:26] Block-level synthesis in progress, 31 of 36 jobs complete, 2 jobs running.
-[09:26:57] Block-level synthesis in progress, 31 of 36 jobs complete, 2 jobs running.
-[09:27:27] Block-level synthesis in progress, 31 of 36 jobs complete, 2 jobs running.
-[09:27:58] Block-level synthesis in progress, 33 of 36 jobs complete, 0 jobs running.
-[09:28:28] Block-level synthesis in progress, 33 of 36 jobs complete, 2 jobs running.
-[09:28:59] Block-level synthesis in progress, 33 of 36 jobs complete, 2 jobs running.
-[09:29:29] Block-level synthesis in progress, 33 of 36 jobs complete, 2 jobs running.
-[09:29:59] Block-level synthesis in progress, 33 of 36 jobs complete, 2 jobs running.
-[09:30:30] Block-level synthesis in progress, 33 of 36 jobs complete, 2 jobs running.
-[09:31:00] Block-level synthesis in progress, 33 of 36 jobs complete, 2 jobs running.
-[09:31:31] Block-level synthesis in progress, 35 of 36 jobs complete, 0 jobs running.
-[09:32:01] Block-level synthesis in progress, 35 of 36 jobs complete, 1 job running.
-[09:32:32] Block-level synthesis in progress, 35 of 36 jobs complete, 1 job running.
-[09:33:02] Block-level synthesis in progress, 35 of 36 jobs complete, 1 job running.
-[09:33:32] Block-level synthesis in progress, 35 of 36 jobs complete, 1 job running.
-[09:34:03] Block-level synthesis in progress, 35 of 36 jobs complete, 1 job running.
-[09:34:33] Block-level synthesis in progress, 36 of 36 jobs complete, 0 jobs running.
-[09:35:03] Top-level synthesis in progress.
-[09:35:34] Top-level synthesis in progress.
-[09:36:04] Top-level synthesis in progress.
-[09:36:35] Top-level synthesis in progress.
-[09:37:05] Top-level synthesis in progress.
-[09:37:13] Run vpl: Step synth: Completed
-[09:37:13] Run vpl: Step impl: Started
-[09:46:51] Finished 2nd of 6 tasks (FPGA linking synthesized kernels to platform). Elapsed time: 01h 12m 09s 
+[21:22:16] Run vpl: Step create_project: Completed
+[21:22:16] Run vpl: Step create_bd: Started
+[21:22:42] Run vpl: Step create_bd: Completed
+[21:22:42] Run vpl: Step update_bd: Started
+[21:22:45] Run vpl: Step update_bd: Completed
+[21:22:45] Run vpl: Step generate_target: Started
+[21:24:00] Run vpl: Step generate_target: RUNNING...
+[21:25:08] Run vpl: Step generate_target: Completed
+[21:25:08] Run vpl: Step config_hw_runs: Started
+[21:25:10] Run vpl: Step config_hw_runs: Completed
+[21:25:10] Run vpl: Step synth: Started
+[21:25:41] Block-level synthesis in progress, 0 of 36 jobs complete, 2 jobs running.
+[21:26:11] Block-level synthesis in progress, 0 of 36 jobs complete, 2 jobs running.
+[21:26:42] Block-level synthesis in progress, 0 of 36 jobs complete, 2 jobs running.
+[21:27:12] Block-level synthesis in progress, 0 of 36 jobs complete, 2 jobs running.
+[21:27:42] Block-level synthesis in progress, 0 of 36 jobs complete, 2 jobs running.
+[21:28:13] Block-level synthesis in progress, 1 of 36 jobs complete, 1 job running.
+[21:28:43] Block-level synthesis in progress, 1 of 36 jobs complete, 2 jobs running.
+[21:29:13] Block-level synthesis in progress, 1 of 36 jobs complete, 2 jobs running.
+[21:29:43] Block-level synthesis in progress, 1 of 36 jobs complete, 2 jobs running.
+[21:30:13] Block-level synthesis in progress, 1 of 36 jobs complete, 2 jobs running.
+[21:30:44] Block-level synthesis in progress, 2 of 36 jobs complete, 1 job running.
+[21:31:14] Block-level synthesis in progress, 2 of 36 jobs complete, 2 jobs running.
+[21:31:44] Block-level synthesis in progress, 3 of 36 jobs complete, 2 jobs running.
+[21:32:14] Block-level synthesis in progress, 3 of 36 jobs complete, 2 jobs running.
+[21:32:45] Block-level synthesis in progress, 3 of 36 jobs complete, 2 jobs running.
+[21:33:15] Block-level synthesis in progress, 3 of 36 jobs complete, 2 jobs running.
+[21:33:45] Block-level synthesis in progress, 4 of 36 jobs complete, 2 jobs running.
+[21:34:15] Block-level synthesis in progress, 4 of 36 jobs complete, 2 jobs running.
+[21:34:46] Block-level synthesis in progress, 4 of 36 jobs complete, 2 jobs running.
+[21:35:16] Block-level synthesis in progress, 5 of 36 jobs complete, 2 jobs running.
+[21:35:46] Block-level synthesis in progress, 5 of 36 jobs complete, 2 jobs running.
+[21:36:16] Block-level synthesis in progress, 6 of 36 jobs complete, 1 job running.
+[21:36:46] Block-level synthesis in progress, 6 of 36 jobs complete, 2 jobs running.
+[21:37:17] Block-level synthesis in progress, 6 of 36 jobs complete, 2 jobs running.
+[21:37:47] Block-level synthesis in progress, 6 of 36 jobs complete, 2 jobs running.
+[21:38:17] Block-level synthesis in progress, 6 of 36 jobs complete, 2 jobs running.
+[21:38:47] Block-level synthesis in progress, 7 of 36 jobs complete, 2 jobs running.
+[21:39:18] Block-level synthesis in progress, 8 of 36 jobs complete, 2 jobs running.
+[21:39:48] Block-level synthesis in progress, 8 of 36 jobs complete, 2 jobs running.
+[21:40:18] Block-level synthesis in progress, 8 of 36 jobs complete, 2 jobs running.
+[21:40:48] Block-level synthesis in progress, 8 of 36 jobs complete, 2 jobs running.
+[21:41:19] Block-level synthesis in progress, 9 of 36 jobs complete, 1 job running.
+[21:41:49] Block-level synthesis in progress, 10 of 36 jobs complete, 2 jobs running.
+[21:42:19] Block-level synthesis in progress, 10 of 36 jobs complete, 2 jobs running.
+[21:42:50] Block-level synthesis in progress, 10 of 36 jobs complete, 2 jobs running.
+[21:43:20] Block-level synthesis in progress, 10 of 36 jobs complete, 2 jobs running.
+[21:43:50] Block-level synthesis in progress, 10 of 36 jobs complete, 2 jobs running.
+[21:44:20] Block-level synthesis in progress, 11 of 36 jobs complete, 1 job running.
+[21:44:51] Block-level synthesis in progress, 11 of 36 jobs complete, 2 jobs running.
+[21:45:21] Block-level synthesis in progress, 12 of 36 jobs complete, 2 jobs running.
+[21:45:51] Block-level synthesis in progress, 12 of 36 jobs complete, 2 jobs running.
+[21:46:22] Block-level synthesis in progress, 12 of 36 jobs complete, 2 jobs running.
+[21:46:52] Block-level synthesis in progress, 12 of 36 jobs complete, 2 jobs running.
+[21:47:22] Block-level synthesis in progress, 14 of 36 jobs complete, 1 job running.
+[21:47:53] Block-level synthesis in progress, 14 of 36 jobs complete, 2 jobs running.
+[21:48:23] Block-level synthesis in progress, 14 of 36 jobs complete, 2 jobs running.
+[21:48:53] Block-level synthesis in progress, 14 of 36 jobs complete, 2 jobs running.
+[21:49:23] Block-level synthesis in progress, 14 of 36 jobs complete, 2 jobs running.
+[21:49:54] Block-level synthesis in progress, 14 of 36 jobs complete, 2 jobs running.
+[21:50:24] Block-level synthesis in progress, 16 of 36 jobs complete, 1 job running.
+[21:50:54] Block-level synthesis in progress, 16 of 36 jobs complete, 2 jobs running.
+[21:51:25] Block-level synthesis in progress, 16 of 36 jobs complete, 2 jobs running.
+[21:51:55] Block-level synthesis in progress, 16 of 36 jobs complete, 2 jobs running.
+[21:52:25] Block-level synthesis in progress, 16 of 36 jobs complete, 2 jobs running.
+[21:52:56] Block-level synthesis in progress, 17 of 36 jobs complete, 1 job running.
+[21:53:26] Block-level synthesis in progress, 17 of 36 jobs complete, 2 jobs running.
+[21:53:56] Block-level synthesis in progress, 17 of 36 jobs complete, 2 jobs running.
+[21:54:27] Block-level synthesis in progress, 17 of 36 jobs complete, 2 jobs running.
+[21:54:57] Block-level synthesis in progress, 17 of 36 jobs complete, 2 jobs running.
+[21:55:27] Block-level synthesis in progress, 19 of 36 jobs complete, 0 jobs running.
+[21:55:58] Block-level synthesis in progress, 19 of 36 jobs complete, 2 jobs running.
+[21:56:28] Block-level synthesis in progress, 19 of 36 jobs complete, 2 jobs running.
+[21:56:58] Block-level synthesis in progress, 19 of 36 jobs complete, 2 jobs running.
+[21:57:29] Block-level synthesis in progress, 19 of 36 jobs complete, 2 jobs running.
+[21:57:59] Block-level synthesis in progress, 21 of 36 jobs complete, 0 jobs running.
+[21:58:29] Block-level synthesis in progress, 21 of 36 jobs complete, 2 jobs running.
+[21:59:00] Block-level synthesis in progress, 21 of 36 jobs complete, 2 jobs running.
+[21:59:30] Block-level synthesis in progress, 21 of 36 jobs complete, 2 jobs running.
+[22:00:00] Block-level synthesis in progress, 21 of 36 jobs complete, 2 jobs running.
+[22:00:31] Block-level synthesis in progress, 21 of 36 jobs complete, 2 jobs running.
+[22:01:01] Block-level synthesis in progress, 23 of 36 jobs complete, 1 job running.
+[22:01:32] Block-level synthesis in progress, 23 of 36 jobs complete, 2 jobs running.
+[22:02:02] Block-level synthesis in progress, 23 of 36 jobs complete, 2 jobs running.
+[22:02:32] Block-level synthesis in progress, 23 of 36 jobs complete, 2 jobs running.
+[22:03:03] Block-level synthesis in progress, 23 of 36 jobs complete, 2 jobs running.
+[22:03:33] Block-level synthesis in progress, 25 of 36 jobs complete, 0 jobs running.
+[22:04:03] Block-level synthesis in progress, 26 of 36 jobs complete, 2 jobs running.
+[22:04:34] Block-level synthesis in progress, 26 of 36 jobs complete, 2 jobs running.
+[22:05:04] Block-level synthesis in progress, 26 of 36 jobs complete, 2 jobs running.
+[22:05:34] Block-level synthesis in progress, 26 of 36 jobs complete, 2 jobs running.
+[22:06:05] Block-level synthesis in progress, 27 of 36 jobs complete, 1 job running.
+[22:06:35] Block-level synthesis in progress, 28 of 36 jobs complete, 2 jobs running.
+[22:07:05] Block-level synthesis in progress, 28 of 36 jobs complete, 2 jobs running.
+[22:07:36] Block-level synthesis in progress, 28 of 36 jobs complete, 2 jobs running.
+[22:08:06] Block-level synthesis in progress, 28 of 36 jobs complete, 2 jobs running.
+[22:08:36] Block-level synthesis in progress, 28 of 36 jobs complete, 2 jobs running.
+[22:09:07] Block-level synthesis in progress, 28 of 36 jobs complete, 2 jobs running.
+[22:09:37] Block-level synthesis in progress, 28 of 36 jobs complete, 2 jobs running.
+[22:10:07] Block-level synthesis in progress, 29 of 36 jobs complete, 2 jobs running.
+[22:10:38] Block-level synthesis in progress, 29 of 36 jobs complete, 2 jobs running.
+[22:11:08] Block-level synthesis in progress, 29 of 36 jobs complete, 2 jobs running.
+[22:11:39] Block-level synthesis in progress, 29 of 36 jobs complete, 2 jobs running.
+[22:12:09] Block-level synthesis in progress, 29 of 36 jobs complete, 2 jobs running.
+[22:12:39] Block-level synthesis in progress, 30 of 36 jobs complete, 1 job running.
+[22:13:10] Block-level synthesis in progress, 30 of 36 jobs complete, 2 jobs running.
+[22:13:40] Block-level synthesis in progress, 30 of 36 jobs complete, 2 jobs running.
+[22:14:11] Block-level synthesis in progress, 30 of 36 jobs complete, 2 jobs running.
+[22:14:41] Block-level synthesis in progress, 30 of 36 jobs complete, 2 jobs running.
+[22:15:11] Block-level synthesis in progress, 30 of 36 jobs complete, 2 jobs running.
+[22:15:42] Block-level synthesis in progress, 30 of 36 jobs complete, 2 jobs running.
+[22:16:12] Block-level synthesis in progress, 31 of 36 jobs complete, 1 job running.
+[22:16:43] Block-level synthesis in progress, 31 of 36 jobs complete, 2 jobs running.
+[22:17:13] Block-level synthesis in progress, 31 of 36 jobs complete, 2 jobs running.
+[22:17:43] Block-level synthesis in progress, 31 of 36 jobs complete, 2 jobs running.
+[22:18:14] Block-level synthesis in progress, 31 of 36 jobs complete, 2 jobs running.
+[22:18:44] Block-level synthesis in progress, 31 of 36 jobs complete, 2 jobs running.
+[22:19:14] Block-level synthesis in progress, 31 of 36 jobs complete, 2 jobs running.
+[22:19:45] Block-level synthesis in progress, 32 of 36 jobs complete, 1 job running.
+[22:20:15] Block-level synthesis in progress, 32 of 36 jobs complete, 2 jobs running.
+[22:20:46] Block-level synthesis in progress, 32 of 36 jobs complete, 2 jobs running.
+[22:21:16] Block-level synthesis in progress, 32 of 36 jobs complete, 2 jobs running.
+[22:21:46] Block-level synthesis in progress, 32 of 36 jobs complete, 2 jobs running.
+[22:22:17] Block-level synthesis in progress, 32 of 36 jobs complete, 2 jobs running.
+[22:22:47] Block-level synthesis in progress, 32 of 36 jobs complete, 2 jobs running.
+[22:23:17] Block-level synthesis in progress, 33 of 36 jobs complete, 1 job running.
+[22:23:48] Block-level synthesis in progress, 33 of 36 jobs complete, 2 jobs running.
+[22:24:18] Block-level synthesis in progress, 33 of 36 jobs complete, 2 jobs running.
+[22:24:49] Block-level synthesis in progress, 33 of 36 jobs complete, 2 jobs running.
+[22:25:19] Block-level synthesis in progress, 33 of 36 jobs complete, 2 jobs running.
+[22:25:50] Block-level synthesis in progress, 33 of 36 jobs complete, 2 jobs running.
+[22:26:20] Block-level synthesis in progress, 34 of 36 jobs complete, 2 jobs running.
+[22:26:51] Block-level synthesis in progress, 34 of 36 jobs complete, 2 jobs running.
+[22:27:21] Block-level synthesis in progress, 34 of 36 jobs complete, 2 jobs running.
+[22:27:52] Block-level synthesis in progress, 34 of 36 jobs complete, 2 jobs running.
+[22:28:22] Block-level synthesis in progress, 34 of 36 jobs complete, 2 jobs running.
+[22:28:24] Run vpl: Step synth: Failed
+[22:28:25] Run vpl: FINISHED. Run Status: synth ERROR
 
-[09:46:51] Starting logic optimization..
-[09:47:52] Phase 1 Retarget
-[09:47:52] Phase 2 Constant propagation
-[09:48:23] Phase 3 Sweep
-[09:48:53] Phase 4 BUFG optimization
-[09:49:23] Phase 5 Shift Register Optimization
-[09:49:23] Phase 6 Post Processing Netlist
-[09:50:25] Finished 3rd of 6 tasks (FPGA logic optimization). Elapsed time: 00h 03m 33s 
+===>The following messages were generated while  Compiling (synthesis checkpoint) kernel/IP: cl_FastaTo2Bit_dataflow_1_0 Log file: /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/vivado/vpl/prj/prj.runs/cl_FastaTo2Bit_dataflow_1_0_synth_1/runme.log  :
+ERROR: [VPL 8-5834] Design needs 71967 RAMB18 which is more than device capacity of 4320
+ERROR: [VPL 17-69] Command failed: Vivado Synthesis failed
+WARNING: [VPL 60-732] Link warning: No monitor points found for BD automation.
+ERROR: [VPL 60-704] Integration error, One or more synthesis runs failed during dynamic region dcp generation
+ERROR: [VPL 60-704] Integration error, run 'my_rm_synth_1' couldn't start because one or more of the prerequisite runs failed
+ERROR: [VPL 60-704] Integration error, run 'cl_FastaTo2Bit_dataflow_1_0_synth_1' failed, please look at the run log file '/home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-dataflow_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/vivado/vpl/prj/prj.runs/cl_FastaTo2Bit_dataflow_1_0_synth_1/runme.log' for more information
+ERROR: [VPL 60-1328] Vpl run 'vpl' failed
+ERROR: [VPL 60-806] Failed to finish platform linker
+INFO: [v++ 60-1442] [22:28:25] Run run_link: Step vpl: Failed
+Time (s): cpu = 00:00:35 ; elapsed = 01:06:23 . Memory (MB): peak = 686.582 ; gain = 0.000 ; free physical = 23101 ; free virtual = 46938
+ERROR: [v++ 60-661] v++ link run 'run_link' failed
+ERROR: [v++ 60-626] Kernel link failed to complete
+ERROR: [v++ 60-703] Failed to finish linking
 
-[09:50:25] Starting logic placement..
-[09:51:25] Phase 1 Placer Initialization
-[09:51:25] Phase 1.1 Placer Initialization Netlist Sorting
-[09:52:26] Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
-[09:53:58] Phase 1.3 Build Placer Netlist Model
-[09:55:59] Phase 1.4 Constrain Clocks/Macros
-[09:56:30] Phase 2 Global Placement
-[09:56:30] Phase 2.1 Floorplanning
-[09:58:32] Phase 2.2 Global Placement Core
-[10:06:39] Phase 2.2.1 Physical Synthesis In Placer
-[10:07:40] Phase 3 Detail Placement
-[10:07:40] Phase 3.1 Commit Multi Column Macros
-[10:07:40] Phase 3.2 Commit Most Macros & LUTRAMs
-[10:08:10] Phase 3.3 Area Swap Optimization
-[10:08:41] Phase 3.4 Pipeline Register Optimization
-[10:08:41] Phase 3.5 IO Cut Optimizer
-[10:08:41] Phase 3.6 Fast Optimization
-[10:09:43] Phase 3.7 Small Shape DP
-[10:09:43] Phase 3.7.1 Small Shape Clustering
-[10:09:43] Phase 3.7.2 Flow Legalize Slice Clusters
-[10:10:13] Phase 3.7.3 Slice Area Swap
-[10:10:13] Phase 3.7.4 Commit Slice Clusters
-[10:10:44] Phase 3.8 Place Remaining
-[10:10:44] Phase 3.9 Re-assign LUT pins
-[10:10:44] Phase 3.10 Pipeline Register Optimization
-[10:10:44] Phase 3.11 Fast Optimization
-[10:13:46] Phase 4 Post Placement Optimization and Clean-Up
-[10:13:46] Phase 4.1 Post Commit Optimization
-[10:15:18] Phase 4.1.1 Post Placement Optimization
-[10:15:18] Phase 4.1.1.1 BUFG Insertion
-[10:15:48] Phase 4.1.1.2 BUFG Replication
-[10:16:18] Phase 4.1.1.3 Replication
-[10:16:49] Phase 4.2 Post Placement Cleanup
-[10:17:50] Phase 4.3 Placer Reporting
-[10:17:50] Phase 4.4 Final Placement Cleanup
-[10:22:54] Finished 4th of 6 tasks (FPGA logic placement). Elapsed time: 00h 32m 29s 
+****** configutil v2019.2 (64-bit)
+  **** SW Build 2700185 on Thu Oct 24 18:45:48 MDT 2019
+    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 
-[10:22:54] Starting logic routing..
-[10:23:25] Phase 1 Build RT Design
-[10:25:57] Phase 2 Router Initialization
-[10:25:57] Phase 2.1 Fix Topology Constraints
-[10:25:57] Phase 2.2 Pre Route Cleanup
-[10:25:57] Phase 2.3 Global Clock Net Routing
-[10:26:28] Phase 2.4 Update Timing
-[10:28:30] Phase 2.5 Update Timing for Bus Skew
-[10:28:30] Phase 2.5.1 Update Timing
-[10:29:31] Phase 3 Initial Routing
-[10:30:01] Phase 4 Rip-up And Reroute
-[10:30:01] Phase 4.1 Global Iteration 0
-[10:33:04] Phase 4.2 Global Iteration 1
-[10:34:05] Phase 4.3 Global Iteration 2
-[10:35:06] Phase 5 Delay and Skew Optimization
-[10:35:06] Phase 5.1 Delay CleanUp
-[10:35:06] Phase 5.1.1 Update Timing
-[10:36:07] Phase 5.2 Clock Skew Optimization
-[10:36:07] Phase 6 Post Hold Fix
-[10:36:07] Phase 6.1 Hold Fix Iter
-[10:36:07] Phase 6.1.1 Update Timing
-[10:37:08] Phase 7 Leaf Clock Prog Delay Opt
-[10:38:08] Phase 8 Route finalize
-[10:38:08] Phase 9 Verifying routed nets
-[10:38:08] Phase 10 Depositing Routes
-[10:38:39] Phase 11 Post Router Timing
-[10:39:09] Finished 5th of 6 tasks (FPGA routing). Elapsed time: 00h 16m 14s 
+INFO: [ConfigUtil 60-895]   Target platform: /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xpfm
+INFO: [ConfigUtil 60-1578]   This platform contains Xilinx Shell Archive '/home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/hw/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xsa'
+emulation configuration file `emconfig.json` is created in ./device/FastaTo2Bit-dataflow_temp_dir/_x.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1 directory 
+Option Map File Used: '/opt/Xilinx/Vitis/2019.2/data/vitis/vpp/optMap.xml'
 
-[10:39:09] Starting bitstream generation..
-[10:44:59] Run vpl: Step impl: Completed
-[10:45:00] Run vpl: FINISHED. Run Status: impl Complete!
-INFO: [v++ 60-1441] [10:45:01] Run run_link: Step vpl: Completed
-Time (s): cpu = 00:55:43 ; elapsed = 02:10:20 . Memory (MB): peak = 686.586 ; gain = 0.000 ; free physical = 24232 ; free virtual = 49893
-INFO: [v++ 60-1443] [10:45:01] Run run_link: Step rtdgen: Started
+****** v++ v2019.2 (64-bit)
+  **** SW Build 2700185 on Thu Oct 24 18:45:48 MDT 2019
+    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+INFO: [v++ 60-897] Reading --xp value from platform: param:compiler.lockFlowCritSlackThreshold=0
+INFO: [v++ 60-897] Reading --xp value from platform: vivado_param:hd.routingContainmentAreaExpansion=true
+INFO: [v++ 60-897] Reading --xp value from platform: vivado_param:hd.supportClockNetCrossDiffReconfigurablePartitions=1
+INFO: [v++ 60-897] Reading --xp value from platform: vivado_param:bitstream.enablePR=4123
+INFO: [v++ 60-897] Reading --xp value from platform: vivado_param:physynth.ultraRAMOptOutput=false
+INFO: [v++ 60-897] Reading --xp value from platform: vivado_prop:run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MAX_URAM_CASCADE_HEIGHT}={1}
+INFO: [v++ 60-897] Reading --xp value from platform: vivado_param:synth.elaboration.rodinMoreOptions={rt::set_parameter disableOregPackingUram true}
+WARNING: [v++ 60-642] Deprecated parameter name: compiler.lockFlowCritSlackThreshold
+INFO: [v++ 60-1306] Additional information associated with this v++ link can be found at:
+	Reports: /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/reports/link
+	Log files: /home/centos/fasta2bit_cl_aws/device/logs/link
+Running Dispatch Server on port:34586
+INFO: [v++ 60-1548] Creating build summary session with primary output /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/FastaTo2Bit-loop.xclbin.link_summary, at Wed Dec  9 22:28:33 2020
+INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Wed Dec  9 22:28:33 2020
+Running Rule Check Server on port:36975
+INFO: [v++ 60-1315] Creating rulecheck session with output '/home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/reports/link/v++_link_FastaTo2Bit-loop_guidance.html', at Wed Dec  9 22:28:34 2020
+INFO: [v++ 60-895]   Target platform: /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xpfm
+INFO: [v++ 60-1578]   This platform contains Xilinx Shell Archive '/home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/hw/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xsa'
+INFO: [v++ 60-629] Linking for hardware target
+INFO: [v++ 60-423]   Target device: xilinx_aws-vu9p-f1_shell-v04261818_201920_1
+INFO: [v++ 60-1332] Run 'run_link' status: Not started
+INFO: [v++ 60-1443] [22:28:38] Run run_link: Step system_link: Started
+INFO: [v++ 60-1453] Command Line: system_link --xo /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_temp_dir/_x.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/FastaTo2Bit_loop.xo -keep --xpfm /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xpfm --target hw --output_dir /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int --temp_dir /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link
+INFO: [v++ 60-1454] Run Directory: /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/run_link
+INFO: [SYSTEM_LINK 82-76] Reading emulation BD and HPFM information
+INFO: [SYSTEM_LINK 60-1316] Initiating connection to rulecheck server, at Wed Dec  9 22:28:39 2020
+INFO: [SYSTEM_LINK 82-70] Extracting xo v3 file /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_temp_dir/_x.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/FastaTo2Bit_loop.xo
+INFO: [KernelCheck 83-118] 'FastaTo2Bit_loop' kernel.xml and component.xml caseness discrepency is being corrected, S_AXI_CONTROL is being replaced by s_axi_control
+INFO: [KernelCheck 83-118] 'inp_dna' kernel.xml and component.xml caseness discrepency is being corrected, S_AXI_CONTROL is being replaced by s_axi_control
+INFO: [KernelCheck 83-118] 'outp_dna' kernel.xml and component.xml caseness discrepency is being corrected, S_AXI_CONTROL is being replaced by s_axi_control
+INFO: [KernelCheck 83-118] 'size' kernel.xml and component.xml caseness discrepency is being corrected, S_AXI_CONTROL is being replaced by s_axi_control
+INFO: [SYSTEM_LINK 82-53] Creating IP database /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/_sysl/.cdb/xd_ip_db.xml
+INFO: [SYSTEM_LINK 82-38] [22:28:39] build_xd_ip_db started: /opt/Xilinx/Vitis/2019.2/bin/build_xd_ip_db -ip_search 0  -sds-pf /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.hpfm -clkid 0 -ip /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/iprepo/xilinx_com_hls_FastaTo2Bit_loop_1_0,FastaTo2Bit_loop -o /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/_sysl/.cdb/xd_ip_db.xml
+INFO: [SYSTEM_LINK 82-37] [22:28:44] build_xd_ip_db finished successfully
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 278.945 ; gain = 0.000 ; free physical = 23258 ; free virtual = 46900
+INFO: [SYSTEM_LINK 82-51] Create system connectivity graph
+INFO: [SYSTEM_LINK 82-102] Applying explicit connections to the system connectivity graph: /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/cfgraph/cfgen_cfgraph.xml
+INFO: [SYSTEM_LINK 82-38] [22:28:44] cfgen started: /opt/Xilinx/Vitis/2019.2/bin/cfgen -dmclkid 0 -r /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/_sysl/.cdb/xd_ip_db.xml -o /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/cfgraph/cfgen_cfgraph.xml
+INFO: [CFGEN 83-0] Kernel Specs: 
+INFO: [CFGEN 83-0]   kernel: FastaTo2Bit_loop, num: 1  {FastaTo2Bit_loop_1}
+INFO: [CFGEN 83-2226] Inferring mapping for argument FastaTo2Bit_loop_1.inp_dna to DDR[0]
+INFO: [CFGEN 83-2226] Inferring mapping for argument FastaTo2Bit_loop_1.outp_dna to DDR[0]
+INFO: [SYSTEM_LINK 82-37] [22:28:45] cfgen finished successfully
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 288.684 ; gain = 0.000 ; free physical = 23256 ; free virtual = 46898
+INFO: [SYSTEM_LINK 82-52] Create top-level block diagram
+INFO: [SYSTEM_LINK 82-38] [22:28:45] cf2bd started: /opt/Xilinx/Vitis/2019.2/bin/cf2bd  --linux --trace_buffer 1024 --input_file /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/cfgraph/cfgen_cfgraph.xml --ip_db /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/_sysl/.cdb/xd_ip_db.xml --cf_name dr --working_dir /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/_sysl/.xsd --temp_dir /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link --output_dir /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int --target_bd cl.bd
+INFO: [CF2BD 82-31] Launching cf2xd: cf2xd -linux -trace-buffer 1024 -i /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/cfgraph/cfgen_cfgraph.xml -r /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/_sysl/.cdb/xd_ip_db.xml -o dr.xml
+INFO: [CF2BD 82-28] cf2xd finished successfully
+INFO: [CF2BD 82-31] Launching cf_xsd: cf_xsd -disable-address-gen -bd cl.bd -dn dr -dp /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/sys_link/_sysl/.xsd
+[KINFO: [CF2BD 82-28] cf_xsd finished successfully
+INFO: [SYSTEM_LINK 82-37] [22:28:46] cf2bd finished successfully
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 288.684 ; gain = 0.000 ; free physical = 23250 ; free virtual = 46897
+INFO: [v++ 60-1441] [22:28:46] Run run_link: Step system_link: Completed
+Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 686.582 ; gain = 0.000 ; free physical = 23267 ; free virtual = 46915
+INFO: [v++ 60-1443] [22:28:46] Run run_link: Step cf2sw: Started
+INFO: [v++ 60-1453] Command Line: cf2sw -sdsl /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/sdsl.dat -rtd /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/cf2sw.rtd -xclbin /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/xclbin_orig.xml -o /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/xclbin_orig.1.xml
+INFO: [v++ 60-1454] Run Directory: /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/run_link
+INFO: [v++ 60-1441] [22:28:47] Run run_link: Step cf2sw: Completed
+Time (s): cpu = 00:00:00.46 ; elapsed = 00:00:00.53 . Memory (MB): peak = 686.582 ; gain = 0.000 ; free physical = 23266 ; free virtual = 46914
+INFO: [v++ 60-1443] [22:28:47] Run run_link: Step rtd2_system_diagram: Started
+INFO: [v++ 60-1453] Command Line: rtd2SystemDiagram --rtdJsonFileName /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/cf2sw.rtd --diagramJsonFileName /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/systemDiagramModel.json --platformFilePath /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xpfm --generatedByName v++ --generatedByVersion 2019.2 --generatedByChangeList 2700185 --generatedByTimeStamp Thu Oct 24 18:45:48 MDT 2019 --generatedByOptions /opt/Xilinx/Vitis/2019.2/bin/unwrapped/lnx64.o/v++ -t hw --platform /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xpfm --save-temps --temp_dir ./device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1 --log_dir ./device/logs -l -odevice/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/FastaTo2Bit-loop.xclbin device/FastaTo2Bit-loop_temp_dir/_x.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/FastaTo2Bit_loop.xo  --generatedByXclbinName FastaTo2Bit-loop --kernelInfoDataFileName /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/kernel_info.dat
+INFO: [v++ 60-1454] Run Directory: /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/run_link
+WARNING: [v++ 82-168] hardwarePlatform.board.name is not in the platform information.
+WARNING: [v++ 82-169] hardwarePlatform.board.part is not in the platform information.
+WARNING: [v++ 82-167] hardwarePlatform.board.boardPart is not in the platform information.
+INFO: [v++ 60-839] Read in kernel information from file '/home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/kernel_info.dat'.
+WARNING: [v++ 82-158] Unable to populate kernel available resources DSP entry.
+WARNING: [v++ 82-163] Unable to populate user region available resources.  The platform file deos not contain a hardwarePlatform.devices..core.availableResources entry
+INFO: [v++ 60-1441] [22:28:48] Run run_link: Step rtd2_system_diagram: Completed
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 686.582 ; gain = 0.000 ; free physical = 23266 ; free virtual = 46914
+INFO: [v++ 60-1443] [22:28:48] Run run_link: Step vpl: Started
+INFO: [v++ 60-1453] Command Line: vpl -t hw -f /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xpfm -s --output_dir /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int --log_dir /home/centos/fasta2bit_cl_aws/device/logs/link --report_dir /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/reports/link --config /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/vplConfig.ini -k /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/kernel_info.dat --webtalk_flag Vitis --temp_dir /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link --no-info --tlog_dir /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/.tlog/v++_link_FastaTo2Bit-loop --iprepo /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/xo/ip_repo/xilinx_com_hls_FastaTo2Bit_loop_1_0 --messageDb /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/run_link/vpl.pb /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/dr.bd.tcl
+INFO: [v++ 60-1454] Run Directory: /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/run_link
+
+****** vpl v2019.2 (64-bit)
+  **** SW Build 2700185 on Thu Oct 24 18:45:48 MDT 2019
+    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+INFO: [VPL 60-839] Read in kernel information from file '/home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/kernel_info.dat'.
+WARNING: [VPL 60-642] Deprecated parameter name: compiler.lockFlowCritSlackThreshold
+INFO: [VPL 60-423]   Target device: xilinx_aws-vu9p-f1_shell-v04261818_201920_1
+INFO: [VPL 60-1032] Extracting hardware platform to /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/vivado/vpl/.local/hw_platform
+[22:29:03] Run vpl: Step create_project: Started
+Creating Vivado project.
+[22:29:05] Run vpl: Step create_project: Completed
+[22:29:05] Run vpl: Step create_bd: Started
+[22:29:34] Run vpl: Step create_bd: Completed
+[22:29:34] Run vpl: Step update_bd: Started
+[22:29:36] Run vpl: Step update_bd: Completed
+[22:29:36] Run vpl: Step generate_target: Started
+[22:30:52] Run vpl: Step generate_target: RUNNING...
+[22:31:59] Run vpl: Step generate_target: Completed
+[22:31:59] Run vpl: Step config_hw_runs: Started
+[22:32:02] Run vpl: Step config_hw_runs: Completed
+[22:32:02] Run vpl: Step synth: Started
+[22:32:33] Block-level synthesis in progress, 0 of 36 jobs complete, 2 jobs running.
+[22:33:03] Block-level synthesis in progress, 0 of 36 jobs complete, 2 jobs running.
+[22:33:34] Block-level synthesis in progress, 0 of 36 jobs complete, 2 jobs running.
+[22:34:04] Block-level synthesis in progress, 0 of 36 jobs complete, 2 jobs running.
+[22:34:35] Block-level synthesis in progress, 0 of 36 jobs complete, 2 jobs running.
+[22:35:05] Block-level synthesis in progress, 2 of 36 jobs complete, 1 job running.
+[22:35:35] Block-level synthesis in progress, 3 of 36 jobs complete, 1 job running.
+[22:36:06] Block-level synthesis in progress, 3 of 36 jobs complete, 2 jobs running.
+[22:36:36] Block-level synthesis in progress, 3 of 36 jobs complete, 2 jobs running.
+[22:37:06] Block-level synthesis in progress, 3 of 36 jobs complete, 2 jobs running.
+[22:37:36] Block-level synthesis in progress, 3 of 36 jobs complete, 2 jobs running.
+[22:38:06] Block-level synthesis in progress, 3 of 36 jobs complete, 2 jobs running.
+[22:38:37] Block-level synthesis in progress, 4 of 36 jobs complete, 2 jobs running.
+[22:39:07] Block-level synthesis in progress, 4 of 36 jobs complete, 2 jobs running.
+[22:39:37] Block-level synthesis in progress, 4 of 36 jobs complete, 2 jobs running.
+[22:40:07] Block-level synthesis in progress, 4 of 36 jobs complete, 2 jobs running.
+[22:40:37] Block-level synthesis in progress, 5 of 36 jobs complete, 1 job running.
+[22:41:08] Block-level synthesis in progress, 6 of 36 jobs complete, 1 job running.
+[22:41:38] Block-level synthesis in progress, 6 of 36 jobs complete, 2 jobs running.
+[22:42:08] Block-level synthesis in progress, 6 of 36 jobs complete, 2 jobs running.
+[22:42:38] Block-level synthesis in progress, 6 of 36 jobs complete, 2 jobs running.
+[22:43:09] Block-level synthesis in progress, 6 of 36 jobs complete, 2 jobs running.
+[22:43:39] Block-level synthesis in progress, 7 of 36 jobs complete, 1 job running.
+[22:44:09] Block-level synthesis in progress, 7 of 36 jobs complete, 2 jobs running.
+[22:44:39] Block-level synthesis in progress, 7 of 36 jobs complete, 2 jobs running.
+[22:45:09] Block-level synthesis in progress, 7 of 36 jobs complete, 2 jobs running.
+[22:45:40] Block-level synthesis in progress, 8 of 36 jobs complete, 1 job running.
+[22:46:10] Block-level synthesis in progress, 9 of 36 jobs complete, 1 job running.
+[22:46:40] Block-level synthesis in progress, 9 of 36 jobs complete, 2 jobs running.
+[22:47:10] Block-level synthesis in progress, 9 of 36 jobs complete, 2 jobs running.
+[22:47:41] Block-level synthesis in progress, 9 of 36 jobs complete, 2 jobs running.
+[22:48:11] Block-level synthesis in progress, 10 of 36 jobs complete, 1 job running.
+[22:48:41] Block-level synthesis in progress, 10 of 36 jobs complete, 2 jobs running.
+[22:49:11] Block-level synthesis in progress, 11 of 36 jobs complete, 1 job running.
+[22:49:42] Block-level synthesis in progress, 11 of 36 jobs complete, 2 jobs running.
+[22:50:12] Block-level synthesis in progress, 11 of 36 jobs complete, 2 jobs running.
+[22:50:42] Block-level synthesis in progress, 11 of 36 jobs complete, 2 jobs running.
+[22:51:12] Block-level synthesis in progress, 12 of 36 jobs complete, 2 jobs running.
+[22:51:43] Block-level synthesis in progress, 12 of 36 jobs complete, 2 jobs running.
+[22:52:13] Block-level synthesis in progress, 12 of 36 jobs complete, 2 jobs running.
+[22:52:43] Block-level synthesis in progress, 12 of 36 jobs complete, 2 jobs running.
+[22:53:14] Block-level synthesis in progress, 12 of 36 jobs complete, 2 jobs running.
+[22:53:44] Block-level synthesis in progress, 13 of 36 jobs complete, 1 job running.
+[22:54:14] Block-level synthesis in progress, 13 of 36 jobs complete, 2 jobs running.
+[22:54:45] Block-level synthesis in progress, 13 of 36 jobs complete, 2 jobs running.
+[22:55:15] Block-level synthesis in progress, 14 of 36 jobs complete, 1 job running.
+[22:55:45] Block-level synthesis in progress, 14 of 36 jobs complete, 2 jobs running.
+[22:56:15] Block-level synthesis in progress, 14 of 36 jobs complete, 2 jobs running.
+[22:56:46] Block-level synthesis in progress, 15 of 36 jobs complete, 2 jobs running.
+[22:57:16] Block-level synthesis in progress, 15 of 36 jobs complete, 2 jobs running.
+[22:57:46] Block-level synthesis in progress, 15 of 36 jobs complete, 2 jobs running.
+[22:58:17] Block-level synthesis in progress, 16 of 36 jobs complete, 2 jobs running.
+[22:58:47] Block-level synthesis in progress, 16 of 36 jobs complete, 2 jobs running.
+[22:59:17] Block-level synthesis in progress, 17 of 36 jobs complete, 1 job running.
+[22:59:48] Block-level synthesis in progress, 17 of 36 jobs complete, 2 jobs running.
+[23:00:18] Block-level synthesis in progress, 17 of 36 jobs complete, 2 jobs running.
+[23:00:48] Block-level synthesis in progress, 17 of 36 jobs complete, 2 jobs running.
+[23:01:19] Block-level synthesis in progress, 18 of 36 jobs complete, 1 job running.
+[23:01:49] Block-level synthesis in progress, 19 of 36 jobs complete, 1 job running.
+[23:02:19] Block-level synthesis in progress, 19 of 36 jobs complete, 2 jobs running.
+[23:02:50] Block-level synthesis in progress, 19 of 36 jobs complete, 2 jobs running.
+[23:03:20] Block-level synthesis in progress, 19 of 36 jobs complete, 2 jobs running.
+[23:03:50] Block-level synthesis in progress, 19 of 36 jobs complete, 2 jobs running.
+[23:04:21] Block-level synthesis in progress, 19 of 36 jobs complete, 2 jobs running.
+[23:04:51] Block-level synthesis in progress, 20 of 36 jobs complete, 2 jobs running.
+[23:05:22] Block-level synthesis in progress, 21 of 36 jobs complete, 2 jobs running.
+[23:05:52] Block-level synthesis in progress, 21 of 36 jobs complete, 2 jobs running.
+[23:06:22] Block-level synthesis in progress, 21 of 36 jobs complete, 2 jobs running.
+[23:06:53] Block-level synthesis in progress, 21 of 36 jobs complete, 2 jobs running.
+[23:07:23] Block-level synthesis in progress, 22 of 36 jobs complete, 1 job running.
+[23:07:53] Block-level synthesis in progress, 23 of 36 jobs complete, 1 job running.
+[23:08:24] Block-level synthesis in progress, 23 of 36 jobs complete, 2 jobs running.
+[23:08:54] Block-level synthesis in progress, 23 of 36 jobs complete, 2 jobs running.
+[23:09:24] Block-level synthesis in progress, 23 of 36 jobs complete, 2 jobs running.
+[23:09:55] Block-level synthesis in progress, 23 of 36 jobs complete, 2 jobs running.
+[23:10:25] Block-level synthesis in progress, 24 of 36 jobs complete, 1 job running.
+[23:10:55] Block-level synthesis in progress, 24 of 36 jobs complete, 2 jobs running.
+[23:11:26] Block-level synthesis in progress, 26 of 36 jobs complete, 1 job running.
+[23:11:56] Block-level synthesis in progress, 26 of 36 jobs complete, 2 jobs running.
+[23:12:26] Block-level synthesis in progress, 26 of 36 jobs complete, 2 jobs running.
+[23:12:57] Block-level synthesis in progress, 26 of 36 jobs complete, 2 jobs running.
+[23:13:27] Block-level synthesis in progress, 27 of 36 jobs complete, 2 jobs running.
+[23:13:57] Block-level synthesis in progress, 28 of 36 jobs complete, 1 job running.
+[23:14:28] Block-level synthesis in progress, 28 of 36 jobs complete, 2 jobs running.
+[23:14:58] Block-level synthesis in progress, 28 of 36 jobs complete, 2 jobs running.
+[23:15:29] Block-level synthesis in progress, 28 of 36 jobs complete, 2 jobs running.
+[23:15:59] Block-level synthesis in progress, 29 of 36 jobs complete, 1 job running.
+[23:16:29] Block-level synthesis in progress, 29 of 36 jobs complete, 2 jobs running.
+[23:17:00] Block-level synthesis in progress, 29 of 36 jobs complete, 2 jobs running.
+[23:17:30] Block-level synthesis in progress, 30 of 36 jobs complete, 1 job running.
+[23:18:00] Block-level synthesis in progress, 30 of 36 jobs complete, 2 jobs running.
+[23:18:31] Block-level synthesis in progress, 31 of 36 jobs complete, 1 job running.
+[23:19:01] Block-level synthesis in progress, 31 of 36 jobs complete, 2 jobs running.
+[23:19:32] Block-level synthesis in progress, 31 of 36 jobs complete, 2 jobs running.
+[23:20:02] Block-level synthesis in progress, 31 of 36 jobs complete, 2 jobs running.
+[23:20:32] Block-level synthesis in progress, 31 of 36 jobs complete, 2 jobs running.
+[23:21:03] Block-level synthesis in progress, 32 of 36 jobs complete, 2 jobs running.
+[23:21:33] Block-level synthesis in progress, 32 of 36 jobs complete, 2 jobs running.
+[23:22:04] Block-level synthesis in progress, 33 of 36 jobs complete, 2 jobs running.
+[23:22:34] Block-level synthesis in progress, 33 of 36 jobs complete, 2 jobs running.
+[23:23:04] Block-level synthesis in progress, 33 of 36 jobs complete, 2 jobs running.
+[23:23:35] Block-level synthesis in progress, 33 of 36 jobs complete, 2 jobs running.
+[23:24:05] Block-level synthesis in progress, 34 of 36 jobs complete, 1 job running.
+[23:24:35] Block-level synthesis in progress, 35 of 36 jobs complete, 1 job running.
+[23:25:06] Block-level synthesis in progress, 35 of 36 jobs complete, 1 job running.
+[23:25:36] Block-level synthesis in progress, 35 of 36 jobs complete, 1 job running.
+[23:26:06] Block-level synthesis in progress, 35 of 36 jobs complete, 1 job running.
+[23:26:37] Block-level synthesis in progress, 35 of 36 jobs complete, 1 job running.
+[23:27:07] Block-level synthesis in progress, 36 of 36 jobs complete, 0 jobs running.
+[23:27:37] Top-level synthesis in progress.
+[23:28:08] Top-level synthesis in progress.
+[23:28:38] Top-level synthesis in progress.
+[23:29:08] Top-level synthesis in progress.
+[23:29:39] Top-level synthesis in progress.
+[23:29:55] Run vpl: Step synth: Completed
+[23:29:55] Run vpl: Step impl: Started
+[23:39:02] Finished 2nd of 6 tasks (FPGA linking synthesized kernels to platform). Elapsed time: 01h 10m 12s 
+
+[23:39:02] Starting logic optimization..
+[23:40:03] Phase 1 Retarget
+[23:40:33] Phase 2 Constant propagation
+[23:40:33] Phase 3 Sweep
+[23:41:03] Phase 4 BUFG optimization
+[23:41:34] Phase 5 Shift Register Optimization
+[23:41:34] Phase 6 Post Processing Netlist
+[23:42:35] Finished 3rd of 6 tasks (FPGA logic optimization). Elapsed time: 00h 03m 32s 
+
+[23:42:35] Starting logic placement..
+[23:43:35] Phase 1 Placer Initialization
+[23:43:35] Phase 1.1 Placer Initialization Netlist Sorting
+[23:44:36] Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
+[23:46:08] Phase 1.3 Build Placer Netlist Model
+[23:48:09] Phase 1.4 Constrain Clocks/Macros
+[23:48:09] Phase 2 Global Placement
+[23:48:09] Phase 2.1 Floorplanning
+[23:50:11] Phase 2.2 Global Placement Core
+[23:56:47] Phase 2.2.1 Physical Synthesis In Placer
+[23:58:18] Phase 3 Detail Placement
+[23:58:18] Phase 3.1 Commit Multi Column Macros
+[23:58:18] Phase 3.2 Commit Most Macros & LUTRAMs
+[23:58:49] Phase 3.3 Area Swap Optimization
+[23:58:49] Phase 3.4 Pipeline Register Optimization
+[23:58:49] Phase 3.5 IO Cut Optimizer
+[23:58:49] Phase 3.6 Fast Optimization
+[23:59:50] Phase 3.7 Small Shape DP
+[23:59:50] Phase 3.7.1 Small Shape Clustering
+[00:00:21] Phase 3.7.2 Flow Legalize Slice Clusters
+[00:00:21] Phase 3.7.3 Slice Area Swap
+[00:00:21] Phase 3.7.4 Commit Slice Clusters
+[00:00:51] Phase 3.8 Place Remaining
+[00:00:51] Phase 3.9 Re-assign LUT pins
+[00:00:51] Phase 3.10 Pipeline Register Optimization
+[00:00:51] Phase 3.11 Fast Optimization
+[00:03:54] Phase 4 Post Placement Optimization and Clean-Up
+[00:03:54] Phase 4.1 Post Commit Optimization
+[00:05:25] Phase 4.1.1 Post Placement Optimization
+[00:05:25] Phase 4.1.1.1 BUFG Insertion
+[00:05:56] Phase 4.1.1.2 BUFG Replication
+[00:06:26] Phase 4.1.1.3 Replication
+[00:06:26] Phase 4.2 Post Placement Cleanup
+[00:07:57] Phase 4.3 Placer Reporting
+[00:07:57] Phase 4.4 Final Placement Cleanup
+[00:12:32] Finished 4th of 6 tasks (FPGA logic placement). Elapsed time: 00h 29m 57s 
+
+[00:12:32] Starting logic routing..
+[00:13:33] Phase 1 Build RT Design
+[00:15:34] Phase 2 Router Initialization
+[00:15:34] Phase 2.1 Fix Topology Constraints
+[00:15:34] Phase 2.2 Pre Route Cleanup
+[00:16:05] Phase 2.3 Global Clock Net Routing
+[00:16:05] Phase 2.4 Update Timing
+[00:18:07] Phase 2.5 Update Timing for Bus Skew
+[00:18:07] Phase 2.5.1 Update Timing
+[00:19:07] Phase 3 Initial Routing
+[00:19:38] Phase 4 Rip-up And Reroute
+[00:19:38] Phase 4.1 Global Iteration 0
+[00:22:10] Phase 4.2 Global Iteration 1
+[00:23:11] Phase 4.3 Global Iteration 2
+[00:23:41] Phase 5 Delay and Skew Optimization
+[00:23:41] Phase 5.1 Delay CleanUp
+[00:23:41] Phase 5.1.1 Update Timing
+[00:24:42] Phase 5.2 Clock Skew Optimization
+[00:24:42] Phase 6 Post Hold Fix
+[00:24:42] Phase 6.1 Hold Fix Iter
+[00:24:42] Phase 6.1.1 Update Timing
+[00:25:43] Phase 7 Leaf Clock Prog Delay Opt
+[00:26:44] Phase 8 Route finalize
+[00:26:44] Phase 9 Verifying routed nets
+[00:26:44] Phase 10 Depositing Routes
+[00:27:44] Phase 11 Post Router Timing
+[00:27:44] Finished 5th of 6 tasks (FPGA routing). Elapsed time: 00h 15m 12s 
+
+[00:27:44] Starting bitstream generation..
+[00:33:30] Run vpl: Step impl: Completed
+[00:33:31] Run vpl: FINISHED. Run Status: impl Complete!
+INFO: [v++ 60-1441] [00:33:31] Run run_link: Step vpl: Completed
+Time (s): cpu = 00:01:14 ; elapsed = 02:04:43 . Memory (MB): peak = 686.582 ; gain = 0.000 ; free physical = 23426 ; free virtual = 48601
+INFO: [v++ 60-1443] [00:33:31] Run run_link: Step rtdgen: Started
 INFO: [v++ 60-1453] Command Line: rtdgen
-INFO: [v++ 60-1454] Run Directory: /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/run_link
+INFO: [v++ 60-1454] Run Directory: /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/run_link
 WARNING: [v++ 60-990] _new_clk_freq contains more clocks than we expect, check Platform
 INFO: [v++ 60-991] clock name 'clk_main_a0' (clock ID '2') is being mapped to clock name 'clk_main_a0' in the xclbin
 INFO: [v++ 60-991] clock name 'clk_extra_b0' (clock ID '0') is being mapped to clock name 'DATA_CLK' in the xclbin
@@ -352,22 +560,22 @@ INFO: [v++ 60-991] clock name 'clk_extra_a1' (clock ID '3') is being mapped to c
 INFO: [v++ 60-991] clock name 'clk_extra_c0' (clock ID '1') is being mapped to clock name 'KERNEL_CLK' in the xclbin
 INFO: [v++ 60-991] clock name 'clk_main_a0' (clock ID '') is being mapped to clock name 'clk_main_a0' in the xclbin
 INFO: [v++ 60-1230] The compiler selected the following frequencies for the runtime controllable kernel clock(s) and scalable system clock(s): System (SYSTEM) clock: clk_main_a0 = 250, Unused (UNUSED) clock: clk_main_a0 = 250, Kernel (DATA) clock: clk_extra_b0 = 250, Unused (UNUSED) clock: clk_extra_a1 = 125, Kernel (KERNEL) clock: clk_extra_c0 = 500
-INFO: [v++ 60-1453] Command Line: cf2sw -a /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/address_map.xml -sdsl /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/sdsl.dat -xclbin /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/xclbin_orig.xml -rtd /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop.rtd -o /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop.xml
+INFO: [v++ 60-1453] Command Line: cf2sw -a /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/address_map.xml -sdsl /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/sdsl.dat -xclbin /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/xclbin_orig.xml -rtd /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop.rtd -o /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop.xml
 INFO: [v++ 60-1618] Launching 
-INFO: [v++ 60-1441] [10:45:02] Run run_link: Step rtdgen: Completed
-Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 686.586 ; gain = 0.000 ; free physical = 24233 ; free virtual = 49894
-INFO: [v++ 60-1443] [10:45:02] Run run_link: Step xclbinutil: Started
-INFO: [v++ 60-1453] Command Line: xclbinutil --add-section BITSTREAM:RAW:/home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/routed.dcp --force --key-value SYS:mode:hw_pr --add-section :JSON:/home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop.rtd --append-section :JSON:/home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/appendSection.rtd --add-section CLOCK_FREQ_TOPOLOGY:JSON:/home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop_xml.rtd --add-section BUILD_METADATA:JSON:/home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop_build.rtd --add-section EMBEDDED_METADATA:RAW:/home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop.xml --add-section SYSTEM_METADATA:RAW:/home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/systemDiagramModelSlrBaseAddress.json --key-value SYS:PlatformVBNV:xilinx_aws-vu9p-f1_shell-v04261818_201920_1 --output /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop.xcp
-INFO: [v++ 60-1454] Run Directory: /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/run_link
+INFO: [v++ 60-1441] [00:33:33] Run run_link: Step rtdgen: Completed
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 686.582 ; gain = 0.000 ; free physical = 23427 ; free virtual = 48602
+INFO: [v++ 60-1443] [00:33:33] Run run_link: Step xclbinutil: Started
+INFO: [v++ 60-1453] Command Line: xclbinutil --add-section BITSTREAM:RAW:/home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/routed.dcp --force --key-value SYS:mode:hw_pr --add-section :JSON:/home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop.rtd --append-section :JSON:/home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/appendSection.rtd --add-section CLOCK_FREQ_TOPOLOGY:JSON:/home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop_xml.rtd --add-section BUILD_METADATA:JSON:/home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop_build.rtd --add-section EMBEDDED_METADATA:RAW:/home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop.xml --add-section SYSTEM_METADATA:RAW:/home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/systemDiagramModelSlrBaseAddress.json --key-value SYS:PlatformVBNV:xilinx_aws-vu9p-f1_shell-v04261818_201920_1 --output /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop.xcp
+INFO: [v++ 60-1454] Run Directory: /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/run_link
 XRT Build Version: 2.3.0
        Build Date: 2020-02-06 15:08:44
           Hash ID: 9e13d57c4563e2c19bf5f518993f6e5a8dadc18a
 Creating a default 'in-memory' xclbin image.
 
 Section: 'BITSTREAM'(0) was successfully added.
-Size   : 202687588 bytes
+Size   : 204836347 bytes
 Format : RAW
-File   : '/home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/routed.dcp'
+File   : '/home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/routed.dcp'
 
 Section: 'MEM_TOPOLOGY'(6) was successfully added.
 Format : JSON
@@ -384,59 +592,46 @@ File   : 'connectivity'
 Section: 'CLOCK_FREQ_TOPOLOGY'(11) was successfully added.
 Size   : 682 bytes
 Format : JSON
-File   : '/home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop_xml.rtd'
+File   : '/home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop_xml.rtd'
 
 Section: 'BUILD_METADATA'(14) was successfully added.
-Size   : 2354 bytes
+Size   : 2355 bytes
 Format : JSON
-File   : '/home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop_build.rtd'
+File   : '/home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop_build.rtd'
 
 Section: 'EMBEDDED_METADATA'(2) was successfully added.
-Size   : 3163 bytes
+Size   : 3616 bytes
 Format : RAW
-File   : '/home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop.xml'
+File   : '/home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop.xml'
 
 Section: 'SYSTEM_METADATA'(22) was successfully added.
-Size   : 5489 bytes
+Size   : 5493 bytes
 Format : RAW
-File   : '/home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/systemDiagramModelSlrBaseAddress.json'
+File   : '/home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/systemDiagramModelSlrBaseAddress.json'
 
 Section: 'PARTITION_METADATA'(20) was successfully appended to.
 Format : JSON
 File   : 'partition_metadata'
-Successfully wrote (202706695 bytes) to the output file: /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop.xcp
+Successfully wrote (204855904 bytes) to the output file: /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop.xcp
 Leaving xclbinutil.
-INFO: [v++ 60-1441] [10:45:03] Run run_link: Step xclbinutil: Completed
-Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.15 . Memory (MB): peak = 686.586 ; gain = 0.000 ; free physical = 24035 ; free virtual = 49889
-INFO: [v++ 60-1443] [10:45:03] Run run_link: Step xclbinutilinfo: Started
-INFO: [v++ 60-1453] Command Line: xclbinutil --quiet --info /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop.xclbin.info --input /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop.xcp
-INFO: [v++ 60-1454] Run Directory: /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/run_link
-INFO: [v++ 60-1441] [10:45:04] Run run_link: Step xclbinutilinfo: Completed
-Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 686.586 ; gain = 0.000 ; free physical = 24035 ; free virtual = 49889
+INFO: [v++ 60-1441] [00:33:33] Run run_link: Step xclbinutil: Completed
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.19 . Memory (MB): peak = 686.582 ; gain = 0.000 ; free physical = 23223 ; free virtual = 48596
+INFO: [v++ 60-1443] [00:33:33] Run run_link: Step xclbinutilinfo: Started
+INFO: [v++ 60-1453] Command Line: xclbinutil --quiet --info /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop.xclbin.info --input /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/int/FastaTo2Bit-loop.xcp
+INFO: [v++ 60-1454] Run Directory: /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/link/run_link
+INFO: [v++ 60-1441] [00:33:34] Run run_link: Step xclbinutilinfo: Completed
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 686.582 ; gain = 0.000 ; free physical = 23223 ; free virtual = 48597
 INFO: [v++ 60-244] Generating system estimate report...
-INFO: [v++ 60-1092] Generated system estimate report: /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/reports/link/system_estimate_FastaTo2Bit-loop.xtxt
-INFO: [v++ 60-586] Created /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/FastaTo2Bit-loop.ltx
+INFO: [v++ 60-1092] Generated system estimate report: /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/reports/link/system_estimate_FastaTo2Bit-loop.xtxt
+INFO: [v++ 60-586] Created /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/FastaTo2Bit-loop.ltx
 INFO: [v++ 60-586] Created device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/FastaTo2Bit-loop.xclbin
 INFO: [v++ 60-1307] Run completed. Additional information can be found in:
-	Guidance: /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/reports/link/v++_link_FastaTo2Bit-loop_guidance.html
-	Timing Report: /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/reports/link/imp/xilinx_aws-vu9p-f1_shell-v04261818_201920_1_bb_locked_timing_summary_routed.rpt
-	Utilizations Report: /home/centos/fasta2bit_kafka/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/reports/link/imp/kernel_util_routed.rpt
-	Vivado Log: /home/centos/fasta2bit_kafka/device/logs/link/vivado.log
-	Steps Log File: /home/centos/fasta2bit_kafka/device/logs/link/link.steps.log
+	Guidance: /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/reports/link/v++_link_FastaTo2Bit-loop_guidance.html
+	Timing Report: /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/reports/link/imp/xilinx_aws-vu9p-f1_shell-v04261818_201920_1_bb_locked_timing_summary_routed.rpt
+	Utilizations Report: /home/centos/fasta2bit_cl_aws/device/FastaTo2Bit-loop_build/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1/reports/link/imp/kernel_util_routed.rpt
+	Vivado Log: /home/centos/fasta2bit_cl_aws/device/logs/link/vivado.log
+	Steps Log File: /home/centos/fasta2bit_cl_aws/device/logs/link/link.steps.log
 
-INFO: [v++ 60-791] Total elapsed time: 2h 10m 37s
-g++ -I/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx/common/includes/xcl2 -I/opt/xilinx/xrt/include -I/opt/Xilinx/Vivado/2019.2/include -Wall -O0 -g -std=c++11 -fmessage-length=0  ./host/src/err_code.cpp ./host/src/main.cpp /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx/common/includes/xcl2/xcl2.cpp ./host/inc/fastato2bit.h ./host/inc/err_code.h  -o 'FastaTo2Bit'  -L/opt/xilinx/xrt/lib -lOpenCL -lpthread  ../librdkafka/src-cpp/librdkafka++.a ../librdkafka/src/librdkafka.a -lrt -lstdc++  -lpthread -lssl -lcrypto -lz -ldl -lzstd
-emconfigutil --platform /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xpfm --od ./device/FastaTo2Bit-loop_temp_dir/_x.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1
-
-****** configutil v2019.2 (64-bit)
-  **** SW Build 2700185 on Thu Oct 24 18:45:48 MDT 2019
-    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
-
-INFO: [ConfigUtil 60-895]   Target platform: /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xpfm
-INFO: [ConfigUtil 60-1578]   This platform contains Xilinx Shell Archive '/home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_1/hw/xilinx_aws-vu9p-f1_shell-v04261818_201920_1.xsa'
-emulation configuration file `emconfig.json` is created in ./device/FastaTo2Bit-loop_temp_dir/_x.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_1 directory 
-centos@ip-172-31-20-191 fasta2bit_kafka $ ls
-2BitOut.2b  emconfig.json        [0m[01;32mFastaTo2Bit[0m  Makefile      rand128.fasta  randFasta.cpp  [01;32mrun.sh[0m       testfile.fasta  xcd.log
-[01;34mdevice[0m      emulation_debug.log  [01;34mhost[0m         rand10.fasta  rand256.fasta  [01;32mrandFasta.out[0m  screenlog.0  [01;32mutils.mk[0m        xrc.log
-centos@ip-172-31-20-191 fasta2bit_kafka $ cd device[K[K[K[K[K[K[K[K[Kexit
+INFO: [v++ 60-791] Total elapsed time: 2h 5m 2s
+centos@ip-172-31-20-191 fasta2bit_cl_aws $ exit
 exit

@@ -18,3 +18,5 @@ device/logs/*
 *.log
 *.str
 *.csv
+screenlog.*
+script_build.sh

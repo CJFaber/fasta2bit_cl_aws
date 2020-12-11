@@ -9,7 +9,7 @@
 //unsigned int16 corresponds to 64 output chars or 
 //
 
-#define BUFFER_SIZE 1048576
+#define BUFFER_SIZE 32768
 
 
 #define FIRST_POS   6
@@ -21,7 +21,7 @@
 #define INT_MASK_3 0x00030000
 #define INT_MASK_4 0x03000000
 
-__constant uint c_size = 1048576;
+__constant uint c_size = 32768;
 
 //__attribute__((vect_type_hint(char16)))
 
