@@ -1,6 +1,11 @@
 #define INP_STREAM_WIDTH	64		//Number of Chars in width of input stream (512 bits / 8 bits in a char)
 #define OUT_STREAM_WIDTH	16		//Number of Chars in width of output stream (64 values * 2bits per value) / 8 bits in a char 
-#define FILE_SPLIT			1048576	//Split files on 4MiB (4MiB / 4 for number of ints)
+
+//For use with Dataflow:
+#define FILE_SPLIT			524288		//Split files on 512KiB (Dataflow kernel has 32KiB internal buffers)
+
+//For use with loop:
+//#define FILE_SPLIT		1084576		//Split files on 4MiB (4MiB / 4 for number of ints)
 
 
 //Vitis CL includes
@@ -161,10 +166,10 @@ int main(int argc, char* argv[]) {
 		num_read += num_to_read;
 	}
 	
-	//#ifdef DEBUG
+	#ifdef DEBUG
 		std::cout << "OutQueue size: " << OutQueue.size() << std::endl;
 		std::cout << "InpQueue size: " << InpQueue.size() << std::endl;
-	//#endif
+	#endif
 	
 
 	//Create the DataCrunch Server.	
@@ -420,7 +425,7 @@ int main(int argc, char* argv[]) {
             clGetEventProfilingInfo(read_mem_transfer_event.get(), CL_PROFILING_COMMAND_START, sizeof(time_start), &time_start, NULL);
             clGetEventProfilingInfo(read_mem_transfer_event.get(), CL_PROFILING_COMMAND_END, sizeof(time_end), &time_end, NULL);
             //nanoSeconds = time_end-time_start;
-            std::cout << "\tOpenCL read back buffer time: " << (cl_double)(time_end-time_start)*(cl_double)(1e-06) << " milliseconds\n";
+            std::cout << "\tOpenCL read back buffer time: " << (cl_double)(time_end-time_start)*(cl_double)(1e-06) << " milliseconds\n"<<std::endl;
 		#endif
 		#ifdef DEBUG
 			std::cout << "Finished going back for loop\n";
