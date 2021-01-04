@@ -20,3 +20,4 @@ device/logs/*
 *.csv
 screenlog.*
 script_build.sh
+

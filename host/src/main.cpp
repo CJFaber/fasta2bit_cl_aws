@@ -228,12 +228,30 @@ int main(int argc, char* argv[]) {
 	//Start the DataCrunch Server
 	serv.Run();
 	cl::Event in_mem_transfer_event, out_mem_transfer_event, kernel_event, read_mem_transfer_event;
+	
+	#ifdef TIMING
+		cl_ulong time_start = 0;
+    	cl_ulong time_end = 0;
+		double time_host_start = 0;
+		double time_host_end = 0;
+		#ifdef ACC_TIME
+			cl_double t_in_mem = 0;
+			cl_double t_out_mem = 0;
+			cl_double t_kernel = 0;
+			cl_double t_read_mem = 0;
+			double	 t_host	= 0;
+		#endif
+	#endif
+
 
 	std::cout <<"Enter any key to start main loop\n";
 	std::cin.get();
 	
 	while(!InpQueue.empty())
 	{
+		#ifdef TIMING
+			time_host_start = omp_get_wtime();
+		#endif
 		#ifdef DEBUG
 			//std::cout << "Doublecheck on front queue\n";
 			//	for (auto i = InpQueue.front().begin(); i != InpQueue.front().end(); ++i){
@@ -339,20 +357,24 @@ int main(int argc, char* argv[]) {
 							nullptr,
 							&read_mem_transfer_event));
 		#endif
+
+		//#ifdef TIMING
+		//	time_host_end += omp_get_wtime() - time_host_start;
+		//#endif
 		clQueue.finish();
 
 		#ifdef DEBUG
 			std::cout << "Sending to server...\n";
 			//std::cout << "\t OutQueue vector size is: " << OutQueue.size();
 		#endif
-
+		//#ifdef TIMING
+		//	time_host_start = omp_get_wtime();
+		//#endif
 		//Transfer Buffer to CrunchServer
 		unsigned int i = 0;
 		vector<char, aligned_allocator<char>> &RefHold = OutQueue.front();
 		
 		vector<char, aligned_allocator<char>>::iterator left_iter = RefHold.begin();
-		//vector<char>::iterator left_iter = (OutQueue.front()).begin();
-		//vector<char>::iterator right_iter = (OutQueue.front()).begin() + DC_MESSAGE_SIZE ;
 		vector<char, aligned_allocator<char>>::iterator right_iter =  RefHold.begin() + DC_MESSAGE_SIZE;
 		
 		vector<char> message(DC_MESSAGE_SIZE, 0);
@@ -378,8 +400,9 @@ int main(int argc, char* argv[]) {
 				}		
 				std::cout << "\n" << std::dec;
 				#endif
-			
-			//serv.LoadData(message);
+			#ifndef DISABLE_SERV 
+				serv.LoadData(message);
+			#endif
 			i += message.size();
 		
 			//std::cout << "sending message!\n\tSize: " << message.size();
@@ -387,7 +410,10 @@ int main(int argc, char* argv[]) {
 		}
 		InpQueue.pop_front();
 		OutQueue.pop_front();
-
+		#ifdef TIMING
+			//time_host_end += omp_get_wtime() - time_host_start
+			time_host_end = omp_get_wtime() - time_host_start;
+		#endif
   		//printf("Returning from kernel\n");
 
   		////////////////////////////////////////////////////////////////////
@@ -395,13 +421,11 @@ int main(int argc, char* argv[]) {
   		////////////////////////////////////////////////////////////////////
 
 		#ifdef TIMING
-			cl_ulong time_start = 0;
-			cl_ulong time_end = 0;
-			//cl_ulong nanoSeconds = 0;
 
 		#ifdef DEBUG
 			std::cout << "Timing calculations for loop:\n";
 		#endif
+
 			// in_mem_transfer_event, out_mem_transfer_event, kernel_event, read_mem_transfer_event;
 
 			//Inp buffer timing
@@ -409,23 +433,43 @@ int main(int argc, char* argv[]) {
   			clGetEventProfilingInfo(in_mem_transfer_event.get(), CL_PROFILING_COMMAND_END, sizeof(time_end), &time_end, NULL);
   			//nanoSeconds = time_end-time_start;
 			//(cl_double)(end - start)*(cl_double)(1e-06);
+			#ifdef ACC_TIME
+				t_in_mem += (cl_double)(time_end-time_start)*(cl_double)(1e-06);
+			#endif
   			std::cout << "\tOpenCl Inp Buffer write time: " << (cl_double)(time_end-time_start)*(cl_double)(1e-06) << " milliseconds\n";
 
 			//Outp buffer timing
 			clGetEventProfilingInfo(out_mem_transfer_event.get(), CL_PROFILING_COMMAND_START, sizeof(time_start), &time_start, NULL);
             clGetEventProfilingInfo(out_mem_transfer_event.get(), CL_PROFILING_COMMAND_END, sizeof(time_end), &time_end, NULL);
             //nanoSeconds = time_end-time_start;
-            std::cout<<"\tOpenCl Outp Buffer write time: " << (cl_double)(time_end-time_start)*(cl_double)(1e-06) << " milliseconds\n";;
+            #ifdef ACC_TIME
+				t_out_mem += (cl_double)(time_end-time_start)*(cl_double)(1e-06);
+			#endif
+           	std::cout<<"\tOpenCl Outp Buffer write time: " << (cl_double)(time_end-time_start)*(cl_double)(1e-06) << " milliseconds\n";
 
 			//Kernel timing
 			clGetEventProfilingInfo(kernel_event.get(), CL_PROFILING_COMMAND_START, sizeof(time_start), &time_start, NULL);
             clGetEventProfilingInfo(kernel_event.get(), CL_PROFILING_COMMAND_END, sizeof(time_end), &time_end, NULL);
+			#ifdef ACC_TIME
+				t_kernel += (cl_double)(time_end-time_start)*(cl_double)(1e-06);
+			#endif
 			std::cout << "\tOpenCl Kernel time: " << (cl_double)(time_end-time_start)*(cl_double)(1e-06) << " milliseconds\n"; 
+			
 			//read_mem_transfer_event
             clGetEventProfilingInfo(read_mem_transfer_event.get(), CL_PROFILING_COMMAND_START, sizeof(time_start), &time_start, NULL);
             clGetEventProfilingInfo(read_mem_transfer_event.get(), CL_PROFILING_COMMAND_END, sizeof(time_end), &time_end, NULL);
             //nanoSeconds = time_end-time_start;
-            std::cout << "\tOpenCL read back buffer time: " << (cl_double)(time_end-time_start)*(cl_double)(1e-06) << " milliseconds\n"<<std::endl;
+            #ifdef ACC_TIME
+				t_read_mem += (cl_double)(time_end-time_start)*(cl_double)(1e-06);
+            #endif
+			std::cout << "\tOpenCL read back buffer time: " << (cl_double)(time_end-time_start)*(cl_double)(1e-06) << " milliseconds\n";
+			//Host timing
+			#ifdef ACC_TIME
+				t_host += time_host_end;
+			#endif
+			std::cout << "\tTime spent in hostcode (ncluding waiting for queue to finish): " << time_host_end * (double)(1e-03) 
+						  << "milliseconds\n" << std::endl;
+
 		#endif
 		#ifdef DEBUG
 			std::cout << "Finished going back for loop\n";
@@ -436,6 +480,14 @@ int main(int argc, char* argv[]) {
 		std::cout << "Done with main loop press enter to exit\n";
 		std::cin.get();
 	//#endif
+	#ifdef ACC_TIME
+		std::cout << "\tOpenCl total Inp Buffer write time: " << t_in_mem << " milliseconds\n";
+		std::cout << "\tOpenCl Outp Buffer write time: " << t_out_mem << " milliseconds\n";
+		std::cout << "\tOpenCl Kernel time: " << t_kernel << " milliseconds\n";
+		std::cout << "\tOpenCL read back buffer time: " << t_read_mem << " milliseconds\n";
+		std::cout << "\tTime spent in hostcode (Includes waiting for QueueFinish): " << t_host * (double)(1e-3) << "milliseconds\n" << std::endl;
+	#endif
+
 	serv.Stop();
 	return 0;
 }
