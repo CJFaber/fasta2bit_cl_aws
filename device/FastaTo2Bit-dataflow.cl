@@ -15,7 +15,7 @@
 #define FIRST_POS   6
 #define SECOND_POS  4
 #define THIRD_POS 	14
-#define FOURTH_POS  28
+#define FOURTH_POS  24
 #define INT_MASK_1 0x00000003
 #define INT_MASK_2 0x00000300
 #define INT_MASK_3 0x00030000
@@ -58,9 +58,6 @@ void convert_fasta(uint16* inp_buf, uchar16* outp_buf, const unsigned int size)
 		hold = hold >> 1;
     	
 		// out.sX = 0x( FIRST_POS | SECOND_POS | THIRD_POS | FORTH_POS )
-
-		out.s0 = ((hold.s0 & INT_MASK_1) << FIRST_POS) | ((hold.s0 & INT_MASK_2) >> SECOND_POS) |
-				  ((hold.s0 & INT_MASK_3) >> THIRD_POS) | ((hold.s0 & INT_MASK_4) >> FOURTH_POS) ;
 		
 		out.s0 = ((hold.s0 & INT_MASK_1) << FIRST_POS) | ((hold.s0 & INT_MASK_2) >> SECOND_POS) |
 				  ((hold.s0 & INT_MASK_3) >> THIRD_POS) | ((hold.s0 & INT_MASK_4) >> FOURTH_POS) ;

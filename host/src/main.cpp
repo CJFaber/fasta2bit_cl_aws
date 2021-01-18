@@ -124,13 +124,13 @@ int main(int argc, char* argv[]) {
 	deque<vector<char, aligned_allocator<char>>> OutQueue;					//2-Bit packed out - Each char is 4 bases
 	
 	std::cout << "Gcount returned (total num of DNA bases): "<<inp_size << std::endl;
-	size_t num_int = inp_size / sizeof(unsigned int);	
-	size_t outp_size = inp_size / 4;
+	size_t num_int = inp_size / sizeof(unsigned int) + (inp_size % sizeof(unsigned int) != 0);	
+	size_t outp_size = inp_size / 4 + (inp_size % 4 != 0);
 	std::cout << "Total number of integers: "<< num_int << std::endl;
 	std::cout << "Total Number of 2bit compacted chars: " << outp_size << std::endl <<std::endl;
 
 	//InpQueue.emplace_back(FILE_SPLIT, 0);
-	size_t num_read = 0; 
+	size_t num_read = 0;			//Number of integers read 
 	std::vector<unsigned int, aligned_allocator<unsigned int>> Hold;
 		
 	while(num_read < num_int)
@@ -144,8 +144,11 @@ int main(int argc, char* argv[]) {
 		#ifdef DEBUG
 			std::cout << "num_to_read is: " << num_to_read << std::endl;
 		#endif
-		if( (fread(Hold.data(), (sizeof(unsigned int)), num_to_read, f) % 4 )){
-			std::cout << "Fell into not devisiable by four trap\n";
+		if( (fread(Hold.data(), (sizeof(unsigned int)), num_to_read, f) % 16 )){
+			std::cout << "Fell into not devisiable by 16 trap. Hold is: " << Hold.size() <<std::endl;
+			int pad_num = 16 - (Hold.size() % 16);
+			Hold.insert(Hold.end(), pad_num, 1094795585); //'AAAA'
+			std::cout << "New vector length is: " << Hold.size() <<std::endl;
 		}
 		InpQueue.emplace_back(Hold);
 		#ifdef DEBUG
@@ -153,12 +156,14 @@ int main(int argc, char* argv[]) {
 			std::cout << " :: " << Hold.size() << std::endl;
 		
 			for (auto i = InpQueue.back().begin(); i != InpQueue.back().end(); ++i){
-               	std::cout << +(*i) << ", ";
+               	std::cout << +(*i) << std::endl;
            	}
 		
 			std::cout << std::endl;	
 		#endif
-		OutQueue.emplace_back(num_to_read, 0);
+		//OutQueue.emplace_back(num_to_read, 0);
+		// Should be identical to the number of integers read in, some number divisable by 16	
+		OutQueue.emplace_back(Hold.size(), 0);
 		#ifdef DEBUG
 			std::cout << "OutQueue vector added of size: " << OutQueue.back().size() << std::endl;
 			std::cout << "InpQueue vector added of size: " << InpQueue.back().size() << std::endl;
@@ -391,7 +396,7 @@ int main(int argc, char* argv[]) {
 
 			
 				#ifdef PRINTOUT
-  				std::cout << "Output Bector: \n";
+  				std::cout << "Output Bector: \n" << "Message Size: "<< message.size() << std::endl;
 				for (auto i = message.begin(); i != message.end(); ++i){
                 	if (*i != 0){
 						std::cout << std::hex << (0xFF & (*i)) << " ";
@@ -467,8 +472,8 @@ int main(int argc, char* argv[]) {
 			#ifdef ACC_TIME
 				t_host += time_host_end;
 			#endif
-			std::cout << "\tTime spent in hostcode (ncluding waiting for queue to finish): " << time_host_end * (double)(1e-03) 
-						  << "milliseconds\n" << std::endl;
+			std::cout << "\tTime spent in hostcode (ncluding waiting for queue to finish): " << time_host_end 
+						  << std::endl;
 
 		#endif
 		#ifdef DEBUG
@@ -485,7 +490,7 @@ int main(int argc, char* argv[]) {
 		std::cout << "\tOpenCl Outp Buffer write time: " << t_out_mem << " milliseconds\n";
 		std::cout << "\tOpenCl Kernel time: " << t_kernel << " milliseconds\n";
 		std::cout << "\tOpenCL read back buffer time: " << t_read_mem << " milliseconds\n";
-		std::cout << "\tTime spent in hostcode (Includes waiting for QueueFinish): " << t_host * (double)(1e-3) << "milliseconds\n" << std::endl;
+		std::cout << "\tTime spent in hostcode (Includes waiting for QueueFinish): " << t_host << "milliseconds\n" << std::endl;
 	#endif
 
 	serv.Stop();
