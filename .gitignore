@@ -4,6 +4,7 @@
 device/*_build/*
 device/*_temp_dir/*
 device/logs/*
+device/*FastaTo2Bit-*/*
 *.log
 *.fasta
 .run/*
@@ -20,4 +21,6 @@ device/logs/*
 *.csv
 screenlog.*
 script_build.sh
-
+data/*
+*.txt
+*.fna

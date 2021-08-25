@@ -81,7 +81,7 @@ include $(ABS_COMMON_REPO)/common/includes/xcl2/xcl2.mk
 CXXFLAGS += $(xcl2_CXXFLAGS)
 LDFLAGS += $(xcl2_LDFLAGS)
 HOST_SRCS += $(xcl2_SRCS)
-CXXFLAGS += $(opencl_CXXFLAGS) -Wall -O1 -g -std=c++11 -DTIMING -DACC_TIME -DPRINTOUT -DDEBUG -DDISABLE_SERV
+CXXFLAGS += $(opencl_CXXFLAGS) -Wall -O1 -g -std=c++11 -DTIMING -DACC_TIME #-DDEBUG #-DPRINTOUT #-DDISABLE_SERV
 LDFLAGS += $(opencl_LDFLAGS)
 
 

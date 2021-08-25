@@ -154,11 +154,11 @@ int main(int argc, char* argv[]) {
 		#ifdef DEBUG
 			std::cout << "Read into queue: " << num_to_read << " :: " << InpQueue.back().size();
 			std::cout << " :: " << Hold.size() << std::endl;
-		
+			#ifdef PRINTOUT	
 			for (auto i = InpQueue.back().begin(); i != InpQueue.back().end(); ++i){
                	std::cout << +(*i) << std::endl;
            	}
-		
+			#endif
 			std::cout << std::endl;	
 		#endif
 		//OutQueue.emplace_back(num_to_read, 0);
@@ -251,6 +251,9 @@ int main(int argc, char* argv[]) {
 
 	std::cout <<"Enter any key to start main loop\n";
 	std::cin.get();
+	
+	//Call time stamp
+	TimeStamp();	
 	
 	while(!InpQueue.empty())
 	{
@@ -394,9 +397,10 @@ int main(int argc, char* argv[]) {
 				right_iter = right_iter + DC_MESSAGE_SIZE;
 			}
 
-			
-				#ifdef PRINTOUT
+			#ifdef DEBUG	
+				
   				std::cout << "Output Bector: \n" << "Message Size: "<< message.size() << std::endl;
+				#ifdef PRINTOUT
 				for (auto i = message.begin(); i != message.end(); ++i){
                 	if (*i != 0){
 						std::cout << std::hex << (0xFF & (*i)) << " ";
@@ -405,6 +409,7 @@ int main(int argc, char* argv[]) {
 				}		
 				std::cout << "\n" << std::dec;
 				#endif
+			#endif
 			#ifndef DISABLE_SERV 
 				serv.LoadData(message);
 			#endif
@@ -413,6 +418,8 @@ int main(int argc, char* argv[]) {
 			//std::cout << "sending message!\n\tSize: " << message.size();
 			//std::cout << "\n\t i value is : \n" << i << std::endl;
 		}
+		
+
 		InpQueue.pop_front();
 		OutQueue.pop_front();
 		#ifdef TIMING
@@ -480,9 +487,10 @@ int main(int argc, char* argv[]) {
 			std::cout << "Finished going back for loop\n";
 		#endif
 	}
-	serv.PostEndMessage();	
 	//#ifdef DEBUG
-		std::cout << "Done with main loop press enter to exit\n";
+		std::cout << "Done with main loop, posting end message,  press enter to exit\n";
+		serv.PostEndMessage();
+	
 		std::cin.get();
 	//#endif
 	#ifdef ACC_TIME
@@ -492,7 +500,6 @@ int main(int argc, char* argv[]) {
 		std::cout << "\tOpenCL read back buffer time: " << t_read_mem << " milliseconds\n";
 		std::cout << "\tTime spent in hostcode (Includes waiting for QueueFinish): " << t_host << "milliseconds\n" << std::endl;
 	#endif
-
 	serv.Stop();
 	return 0;
 }
