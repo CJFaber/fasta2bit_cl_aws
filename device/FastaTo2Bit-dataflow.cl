@@ -52,7 +52,7 @@ void convert_fasta(uint16* inp_buf, uchar16* outp_buf, const unsigned int size)
     convert: for (unsigned int i = 0 ; i < size ; i++){
 		uint16 hold = 0;
 		uchar16 out = 0;
-		uint16 MASK = 0x06060606;
+		uint16 MASK = 0x06060606;  //Grab the 2nd and 3rd bit
 
 		hold = inp_buf[i] & MASK;
 		hold = hold >> 1;
@@ -114,7 +114,6 @@ void convert_fasta(uint16* inp_buf, uchar16* outp_buf, const unsigned int size)
 __attribute__((xcl_dataflow))
 void run_convert(__global const uint16* inp_dna, __global uchar16* outp_dna, const unsigned int size)
 {
-
 	uint16 buf_in[BUFFER_SIZE];
 	uchar16 buf_out[BUFFER_SIZE];
 
