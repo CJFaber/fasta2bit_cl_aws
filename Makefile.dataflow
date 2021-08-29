@@ -41,13 +41,9 @@ EXECUTABLE := FastaTo2Bit.out
 DEV_COMP_TRGT := cl 				#HLS target: cl / cpp / etc
 #DEVICE_SRC = FastaTo2Bit-loop
 #DEVICE_SRC = FastaTo2Bit-dataflow
-DEVICE_SRC = FastaTo2Bit-dataflow-pipe
+DEVICE_SRC = FastaTo2Bit-dataflow
 #KERNEL_NAME := FastaTo2Bit_loop
-#KERNEL_NAME := FastaTo2Bit_dataflow
-
-KERNEL_NAME_INPUT = read_inp
-KERNEL_NAME_CONV = convert_fasta
-KERNEL_NAME_OUTPUT = write_out
+KERNEL_NAME := FastaTo2Bit_dataflow
 ###########################################
 
 #$(info $(HOST_SRCS))
@@ -58,12 +54,12 @@ KERNEL_NAME_OUTPUT = write_out
 ###########################################
 
 
+
 # Points to top directory of Git repository
 COMMON_REPO =/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx
 PWD = $(shell readlink -f .)
 ABS_COMMON_REPO = $(shell readlink -f $(COMMON_REPO))
 $(info 	$(ABS_COMMON_REPO))
-
 TARGET := hw
 #CHECK FOR x64 at some point
 HOST_ARCH := x86
@@ -103,7 +99,7 @@ ifneq ($(HOST_ARCH), x86)
 endif
 
 # Kernel compiler global settings
-CLFLAGS += -t $(TARGET) --platform $(DEVICE) --save-temps --config link-pipe.cfg
+CLFLAGS += -t $(TARGET) --platform $(DEVICE) --save-temps --config link-dataflow.cfg
 ifneq ($(TARGET), hw)
 	CLFLAGS += -g
 	CLFLAGS += --profile_kernel data:all:all:all:all
@@ -121,10 +117,7 @@ EMCONFIG_DIR = $(TEMP_DIR)
 EMU_DIR = $(SDCARD)/data/emulation
 
 BINARY_CONTAINERS += $(BUILD_DIR)/$(DEVICE_SRC).xclbin
-
-BINARY_CONTAINER_OBJS += $(TEMP_DIR)/$(KERNEL_NAME_INPUT).xo
-BINARY_CONTAINER_OBJS += $(TEMP_DIR)/$(KERNEL_NAME_CONV).xo
-BINARY_CONTAINER_OBJS += $(TEMP_DIR)/$(KERNEL_NAME_OUTPUT).xo
+BINARY_CONTAINER_OBJS += $(TEMP_DIR)/$(KERNEL_NAME).xo
 
 CP = cp -rf
 
@@ -138,24 +131,14 @@ exe: $(EXECUTABLE)
 build: $(BINARY_CONTAINERS)
 
 # Building kernel
-$(TEMP_DIR)/$(KERNEL_NAME_INPUT).xo: $(DEVICE_DIR)/$(DEVICE_SRC).$(DEV_COMP_TRGT)
-	mkdir -p $(LOG_DIR)
+$(TEMP_DIR)/$(KERNEL_NAME).xo: $(DEVICE_DIR)/$(DEVICE_SRC).$(DEV_COMP_TRGT)
 	mkdir -p $(TEMP_DIR)
-	$(VPP) $(VPPFLAGS) $(CLFLAGS) --temp_dir $(TEMP_DIR) --log_dir $(LOG_DIR) -c -k $(KERNEL_NAME_INPUT) -I'$(<D)' -o'$@' '$<'  
-
-$(TEMP_DIR)/$(KERNEL_NAME_CONV).xo: $(DEVICE_DIR)/$(DEVICE_SRC).$(DEV_COMP_TRGT)
 	mkdir -p $(LOG_DIR)
-	mkdir -p $(TEMP_DIR)
-	$(VPP) $(VPPFLAGS) $(CLFLAGS) --temp_dir $(TEMP_DIR) --log_dir $(LOG_DIR) -c -k $(KERNEL_NAME_CONV) -I'$(<D)' -o'$@' '$<'  
-
-$(TEMP_DIR)/$(KERNEL_NAME_OUTPUT).xo: $(DEVICE_DIR)/$(DEVICE_SRC).$(DEV_COMP_TRGT)
-	mkdir -p $(LOG_DIR)
-	mkdir -p $(TEMP_DIR)
-	$(VPP) $(VPPFLAGS) $(CLFLAGS) --temp_dir $(TEMP_DIR) --log_dir $(LOG_DIR) -c -k $(KERNEL_NAME_OUTPUT) -I'$(<D)' -o'$@' '$<'  
-
+	$(VPP) $(VPPFLAGS) $(CLFLAGS) --temp_dir $(TEMP_DIR) --log_dir $(LOG_DIR) -c -k $(KERNEL_NAME) -I'$(<D)' -o'$@' '$<'  
+	#$(VPP) $(CLFLAGS) --temp_dir $(TEMP_DIR) -c -k $(KERNEL_NAME) -I'$(<D)' -o'$@' '$<'
 $(BUILD_DIR)/$(DEVICE_SRC).xclbin: $(BINARY_CONTAINER_OBJS)
 	mkdir -p $(BUILD_DIR)
-	$(VPP) $(CLFLAGS) --temp_dir $(BUILD_DIR) --log_dir $(LOG_DIR) -l $(LDCLFLAGS) --nk $(KERNEL_NAME_CONV):1 --nk $(KERNEL_NAME_INPUT):1 --nk $(KERNEL_NAME_OUTPUT):1 -o'$@' $(+)
+	$(VPP) $(CLFLAGS) --temp_dir $(BUILD_DIR) --log_dir $(LOG_DIR) -l $(LDCLFLAGS) -o'$@' $(+)
 
 # Building Host
 $(EXECUTABLE): check-xrt $(HOST_SRCS) $(HOST_HDRS)
@@ -187,7 +170,7 @@ check: all
 clean:
 	-$(RMDIR) $(EXECUTABLE) $(XCLBIN)/{*sw_emu*,*hw_emu*} 
 	-$(RMDIR) profile_* TempConfig system_estimate.xtxt *.rpt *.csv 
-	-$(RMDIR) src/*.ll *v++* .Xil dltmp* xmltmp* *.log *.jou *.wcfg *.wdb
+	-$(RMDIR) src/*.ll *v++* .Xil emconfig.json dltmp* xmltmp* *.log *.jou *.wcfg *.wdb
 
 cleanall: clean
 	-$(RMDIR) build_dir* sd_card*
